@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Website to calculate how many miles to drive</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+
+	<div class="container">
+		<div class="jumbotron">
+		<p>A Simple program to calculate hom many miles to drive per month if you only had a certain number of miles to drive per year on your lease</p>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<input type="text" id="miles" class="form-control" placeholder="Enter Miles per year">
+					<input type="text" id="year" maxlength="2" class="form-control" placeholder="Enter number of years for the lease">
+					<button class="form-control">Generate Miles</button>
+				</div>
+			</div>
+			<div id="total">
+			</div>
+			<div id="miles-months">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/site.js"></script>
+</body>
+</html>

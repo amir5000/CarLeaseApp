@@ -1,0 +1,41 @@
+button.form-control {
+	width: 200px;
+	margin: 20px auto;
+	text-align: center;
+	color: yellow;
+	background-color: darkgreen;
+}
+
+hr {
+	  border-top: 1px solid #000;
+}
+
+#miles-months p {
+	width: 48%;
+	margin: 0 1%;
+	display: inline-block;
+}
+#total p {
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+}
+
+input.form-control {
+	margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+	.container {
+		padding: 0;
+	}
+	.jumbotron {
+		padding: 20px;
+	}
+	#miles-months p {
+		width: 98%;
+		text-align: center;
+	}
+}

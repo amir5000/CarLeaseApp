@@ -19,12 +19,23 @@ hr {
 	text-align: center;
 }
 
+#miles-months p.total {
+	margin: 20px 0 40px;
+	width: 100%;
+	display: block;
+}
+
+#year {
+}
+
 h1 {
 	text-align: center;
 }
 
-input.form-control {
-	margin: 10px 0;
+input.form-control, select.form-control {
+	width: 48%;
+	margin: 10px 1%;
+	float: left;
 }
 
 @media (max-width: 768px) {

@@ -4,6 +4,7 @@ button.form-control {
 	text-align: center;
 	color: yellow;
 	background-color: darkgreen;
+	width: 48%;
 }
 
 hr {
@@ -33,7 +34,7 @@ h1 {
 }
 
 input.form-control, select.form-control {
-	width: 48%;
+	width: 23%;
 	margin: 10px 1%;
 	float: left;
 }

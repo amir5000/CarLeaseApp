@@ -8,3 +8,4 @@ You enter the miles per year and then the length of the lease in years and it wi
 * HTML
 * CSS
 * Javascript
+* jQuery

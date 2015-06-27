@@ -59,7 +59,7 @@ function milesFunction() {
 			}
 			for (var i = 0; i < months.length; i++) {
 				miles += milesPerMonth;
-				$('#miles-months').append('<p class="text-center">' + months[i] + ' ' + startDay + ' ' + miles.toFixed(1) + ' Miles' + '</p>');
+				$('#miles-months').append('<p>' + months[i] + ' ' + startDay + ' ' + miles.toFixed(1) + ' Miles' + '</p>');
 			}
 			$('#miles-months').append('<p class="text-center total">Total for this year is: ' + miles.toFixed(1) + '</p>');
 		}
@@ -85,12 +85,55 @@ function monthsDropDown() {
 }
 
 function daysDropDown() {
-	var daysDropDown	= ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th', '13th', '14th', '15th', '16th', '17th', 
-	'18th', '19th', '20th', '21th', '22th', '23th', '24th', '25th', '26th', '27th', '28th', '29th', '30th', '31th'];
+	var thirtyOneDays	= ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th', '13th', '14th', '15th', '16th', '17th', 
+	'18th', '19th', '20th', '21st', '22nd', '23rd', '24th', '25th', '26th', '27th', '28th', '29th', '30th', '31st'];
+	var thirtyDays	= ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th', '13th', '14th', '15th', '16th', '17th', 
+	'18th', '19th', '20th', '21st', '22nd', '23rd', '24th', '25th', '26th', '27th', '28th', '29th', '30th'];
+	var twentyNineDays	= ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th', '13th', '14th', '15th', '16th', '17th', 
+	'18th', '19th', '20th', '21st', '22nd', '23rd', '24th', '25th', '26th', '27th', '28th', '29th'];
+
+	var daysDropDown = ['Select a month first'];
 
 	for (var i = 0; i < daysDropDown.length; i++) {
 		$('#day').append('<option>' + daysDropDown[i] + '</option>');
 	}
+
+	$('#month').on('change', function () {
+		var dayValue = $('#month').val();
+		switch (dayValue) {
+			case 'Jan':
+			case 'Mar':
+			case 'May':
+			case 'Jul':
+			case 'Aug':
+			case 'Oct':
+			case 'Dec':
+			default:
+				daysDropDown = thirtyOneDays;
+				$('#day').html("");
+				for (var i = 0; i < daysDropDown.length; i++) {
+					$('#day').append('<option>' + daysDropDown[i] + '</option>');
+				}
+				break;
+			case 'Apr':
+			case 'Jun':
+			case 'Sep':
+			case 'Nov':
+				daysDropDown = thirtyDays;
+				$('#day').html("");
+				for (var i = 0; i < daysDropDown.length; i++) {
+					$('#day').append('<option>' + daysDropDown[i] + '</option>');
+				}
+				break;
+			case 'Feb':
+				daysDropDown = twentyNineDays;
+				$('#day').html("");
+				for (var i = 0; i < daysDropDown.length; i++) {
+					$('#day').append('<option>' + daysDropDown[i] + '</option>');
+				}
+				break;
+		}
+	});
 }
 
 function clearOutput() {

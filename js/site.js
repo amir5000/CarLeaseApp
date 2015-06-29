@@ -1,18 +1,18 @@
 (function() {
 
 	function milesFunction() {
-		var janmonths		= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-		var febmonths		= ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'];
-		var marmonths		= ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'];
-		var aprmonths		= ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
-		var maymonths		= ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'];
-		var junmonths		= ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'];
-		var julmonths		= ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-		var augmonths		= ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
-		var sepmonths		= ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
-		var octmonths		= ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'];
-		var novmonths		= ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
-		var decmonths		= ['Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
+		var janmonths		= ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'];
+		var febmonths		= ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'];
+		var marmonths		= ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
+		var aprmonths		= ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'];
+		var maymonths		= ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'];
+		var junmonths		= ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+		var julmonths		= ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+		var augmonths		= ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
+		var sepmonths		= ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'];
+		var octmonths		= ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
+		var novmonths		= ['Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
+		var decmonths		= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 		var months			= [];
 		var miles			= 0;
@@ -23,32 +23,46 @@
 		var startDay 		= $('#day').val();
 		milesPerMonth 		= inputMiles / 12;
 
-		if (startMonth === janmonths[0]) {
-			months = janmonths;
-		} else if (startMonth === febmonths[0]) {
-			months = febmonths;
-		} else if (startMonth === marmonths[0]) {
-			months = marmonths;
-		} else if (startMonth === aprmonths[0]) {
-			months = aprmonths;
-		} else if (startMonth === maymonths[0]) {
-			months = maymonths;
-		} else if (startMonth === junmonths[0]) {
-			months = junmonths;
-		} else if (startMonth === julmonths[0]) {
-			months = julmonths;
-		} else if (startMonth === augmonths[0]) {
-			months = augmonths;
-		} else if (startMonth === sepmonths[0]) {
-			months = sepmonths;
-		} else if (startMonth === octmonths[0]) {
-			months = octmonths;
-		} else if (startMonth === novmonths[0]) {
-			months = novmonths;
-		} else if (startMonth === decmonths[0]) {
-			months = decmonths;
-		} else {
-			milesPerMonth = 0;
+		switch (startMonth) {
+			case janmonths[11]:
+				months = janmonths;
+				break;
+			case febmonths[11]:
+				months = febmonths;
+				break;
+			case marmonths[11]:
+				months = marmonths;
+				break;
+			case aprmonths[11]:
+				months = aprmonths;
+				break;
+			case maymonths[11]:
+				months = maymonths;
+				break;
+			case junmonths[11]:
+				months = junmonths;
+				break;
+			case julmonths[11]:
+				months = julmonths;
+				break;
+			case augmonths[11]:
+				months = augmonths;
+				break;
+			case sepmonths[11]:
+				months = sepmonths;
+				break;	
+			case octmonths[11]:
+				months = octmonths;
+				break;
+			case novmonths[11]:
+				months = novmonths;
+				break;
+			case decmonths[11]:
+				months = decmonths;
+				break;
+			default:
+				milesPerMonth = 0;
+				break;
 		}
 
 		if (milesPerMonth == '' || milesPerMonth == 0 || years == '' || years == 0 ) {
@@ -79,7 +93,7 @@
 	}
 
 	function monthsDropDown() {
-		var monthsDropDown	= ['Starting Month', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec '];
+		var monthsDropDown	= ['Starting Month', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 		for (var i = 0; i < monthsDropDown.length; i++) {
 			$('#month').append('<option>' + monthsDropDown[i] + '</option>');
@@ -151,15 +165,20 @@
 		}
 	}
 
+	function daysPerMonth(month,year) {
+		return new Date(year, month, 0).getDate();
+	}
+
 	var d = new Date();
 	var year = d.getFullYear();
 	var button = $('button');
 	yearsDropdown();
 	monthsDropDown();
 	daysDropDown();
+	var days = daysPerMonth(2, 2015);
 	button.on('click', clearOutput);
 	button.on('click', milesFunction);
 	button.on('click', totalMiles);
 
-	$('footer').append('<p>Created by Amir5000 &copy ' + year + '</p>')
+	$('footer').append('<p>Created by Amir5000 &copy ' + year + ' ' + days + '</p>')
 })();

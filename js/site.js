@@ -77,8 +77,12 @@
 					$('#miles-months').append('<p>' + months[i] + ' ' + startDay + ' ' + miles.toFixed(1) + ' Miles' + '</p>');
 					var days = daysPerMonth(i, 2015);
 					var milesPerDay = 0;
-					milesPerDay += (milesPerMonth / days);					
-					$('#miles-months').append('<p class="day">Miles total per day to drive in ' + months[i] + ': ' + milesPerDay.toFixed(1) + '</p>');
+					milesPerDay += (milesPerMonth / days);
+					if (i < 1) {
+						$('#miles-months').append('<p class="day">Miles total per day to drive from ' + months[11] + ' ' + startDay + ' to ' + months[0] + ' ' + startDay + ': ' + milesPerDay.toFixed(1) + '</p>');			
+					} else {
+						$('#miles-months').append('<p class="day">Miles total per day to drive from ' + months[i-1] + ' ' + startDay + ' to ' + months[i] + ' ' + startDay + ': ' + milesPerDay.toFixed(1) + '</p>');
+					}
 				}
 				
 				$('#miles-months').append('<p class="text-center total">Total for this year is: ' + miles.toFixed(1) + '</p>');

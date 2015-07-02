@@ -83,7 +83,7 @@
 					var days = daysPerMonth(i, 2015);
 					var milesPerDay = 0;
 					milesPerDay += (milesPerMonth / days);					
-					$('#miles-months').append('<p class="day">Milers to drive per day: ' + milesPerDay.toFixed(1) + '</p>');
+					$('#miles-months').append('<p class="day">Miles total per day to drive in ' + months[i] + ': ' + milesPerDay.toFixed(1) + '</p>');
 				}
 				
 				$('#miles-months').append('<p class="text-center total">Total for this year is: ' + miles.toFixed(1) + '</p>');
@@ -95,7 +95,7 @@
 	}
 
 	function yearsDropdown() {
-		var yearsDropdown	= ['Amount of years for the lease', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+		var yearsDropdown	= ['Total years', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
 		for (var i = 0; i < yearsDropdown.length; i++) {
 			$('#year').append('<option>' + yearsDropdown[i] + '</option>');

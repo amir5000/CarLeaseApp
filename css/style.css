@@ -13,7 +13,7 @@ hr {
 
 #miles-months p {
 	width: 48%;
-	margin: 0 1%;
+	margin: 5px 1% 10px;
 	display: inline-block;
 }
 #total p {

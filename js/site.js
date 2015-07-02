@@ -1,5 +1,9 @@
 (function() {
 
+	function daysPerMonth(month,year) {
+		return new Date(year, month, 0).getDate();
+	}
+
 	function milesFunction() {
 		var janmonths		= ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'];
 		var febmonths		= ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'];
@@ -76,16 +80,22 @@
 				for (var i = 0; i < months.length; i++) {
 					miles += milesPerMonth;
 					$('#miles-months').append('<p>' + months[i] + ' ' + startDay + ' ' + miles.toFixed(1) + ' Miles' + '</p>');
+					var days = daysPerMonth(i, 2015);
+					var milesPerDay = 0;
+					milesPerDay += (milesPerMonth / days);					
+					$('#miles-months').append('<p class="day">Milers to drive per day: ' + milesPerDay.toFixed(1) + '</p>');
 				}
+				
 				$('#miles-months').append('<p class="text-center total">Total for this year is: ' + miles.toFixed(1) + '</p>');
 			}
+
 		} else {
 			alert('Please enter valid miles and year');
 		}
 	}
 
 	function yearsDropdown() {
-		var yearsDropdown	= ['Select the number of years for the lease', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+		var yearsDropdown	= ['Amount of years for the lease', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
 		for (var i = 0; i < yearsDropdown.length; i++) {
 			$('#year').append('<option>' + yearsDropdown[i] + '</option>');
@@ -165,20 +175,15 @@
 		}
 	}
 
-	function daysPerMonth(month,year) {
-		return new Date(year, month, 0).getDate();
-	}
-
 	var d = new Date();
 	var year = d.getFullYear();
 	var button = $('button');
 	yearsDropdown();
 	monthsDropDown();
 	daysDropDown();
-	var days = daysPerMonth(2, 2015);
 	button.on('click', clearOutput);
 	button.on('click', milesFunction);
 	button.on('click', totalMiles);
 
-	$('footer').append('<p>Created by Amir5000 &copy ' + year + ' ' + days + '</p>')
+	$('footer').append('<p>Created by Amir5000 &copy ' + year + '</p>')
 })();

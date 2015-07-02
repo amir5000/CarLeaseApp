@@ -1,9 +1,4 @@
 (function() {
-
-	function daysPerMonth(month,year) {
-		return new Date(year, month, 0).getDate();
-	}
-
 	function milesFunction() {
 		var janmonths		= ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'];
 		var febmonths		= ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'];
@@ -92,6 +87,10 @@
 		} else {
 			alert('Please enter valid miles and year');
 		}
+	}
+
+	function daysPerMonth(month,year) {
+		return new Date(year, month, 0).getDate();
 	}
 
 	function yearsDropdown() {

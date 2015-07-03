@@ -155,53 +155,17 @@
 	}
 
 	function daysDropDown() {
-		var thirtyOneDays	= ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th', '13th', '14th', '15th', '16th', '17th', 
-		'18th', '19th', '20th', '21st', '22nd', '23rd', '24th', '25th', '26th', '27th', '28th', '29th', '30th', '31st'];
-		var thirtyDays	= ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th', '13th', '14th', '15th', '16th', '17th', 
-		'18th', '19th', '20th', '21st', '22nd', '23rd', '24th', '25th', '26th', '27th', '28th', '29th', '30th'];
-		var twentyNineDays	= ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th', '13th', '14th', '15th', '16th', '17th', 
-		'18th', '19th', '20th', '21st', '22nd', '23rd', '24th', '25th', '26th', '27th', '28th', '29th'];
-
 		var daysDropDown = ['Select a month first'];
-
 		for (var i = 0; i < daysDropDown.length; i++) {
 			$('#day').append('<option>' + daysDropDown[i] + '</option>');
 		}
 
 		$('#month').on('change', function () {
-			var dayValue = $('#month').val();
-			switch (dayValue) {
-				case 'Jan':
-				case 'Mar':
-				case 'May':
-				case 'Jul':
-				case 'Aug':
-				case 'Oct':
-				case 'Dec':
-				default:
-					daysDropDown = thirtyOneDays;
-					$('#day').html("");
-					for (var i = 0; i < daysDropDown.length; i++) {
-						$('#day').append('<option>' + daysDropDown[i] + '</option>');
-					}
-					break;
-				case 'Apr':
-				case 'Jun':
-				case 'Sep':
-				case 'Nov':
-					daysDropDown = thirtyDays;
-					$('#day').html("");
-					for (var i = 0; i < daysDropDown.length; i++) {
-						$('#day').append('<option>' + daysDropDown[i] + '</option>');
-					}
-					break;
-				case 'Feb':
-					daysDropDown = twentyNineDays;
-					$('#day').html("");
-					for (var i = 0; i < daysDropDown.length; i++) {
-						$('#day').append('<option>' + daysDropDown[i] + '</option>');
-					}
-					break;
+			var monthValue = $('#month').val();
+			var days = daysPerMonth(monthValue, 2015);
+			$('#day').html("");
+			for (var i = 0; i < days; i++) {
+				$('#day').append('<option>' + (i+1) + '</option>');
 			}
 		});
 	}

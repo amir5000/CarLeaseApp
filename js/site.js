@@ -74,18 +74,19 @@
 				}
 				for (var i = 0; i < months.length; i++) {
 					miles += milesPerMonth;
-					$('#miles-months').append('<p>' + months[i] + ' ' + startDay + ' ' + miles.toFixed(1) + ' Miles' + '</p>');
-					var days = daysPerMonth(i, 2015);
+					if (i < 1) {
+						$('#miles-months').append('<p>Miles total to drive from ' + months[11] + ' ' + startDay + ' to ' + months[0] + ' ' + startDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');			
+					} else {
+						$('#miles-months').append('<p>Miles total to drive from ' + months[i-1] + ' ' + startDay + ' to ' + months[i] + ' ' + startDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
+					}
+					
+					var days = daysPerMonth(months[i], 2015 + j);
 					var milesPerDay = 0;
 					milesPerDay += (milesPerMonth / days);
-					if (i < 1) {
-						$('#miles-months').append('<p class="day">Miles total per day to drive from ' + months[11] + ' ' + startDay + ' to ' + months[0] + ' ' + startDay + ': ' + milesPerDay.toFixed(1) + '</p>');			
-					} else {
-						$('#miles-months').append('<p class="day">Miles total per day to drive from ' + months[i-1] + ' ' + startDay + ' to ' + months[i] + ' ' + startDay + ': ' + milesPerDay.toFixed(1) + '</p>');
-					}
+					$('#miles-months').append('<p class="day">And a total of <strong>' + milesPerDay.toFixed(1) + '</strong> miles per day.</p>');			
 				}
 				
-				$('#miles-months').append('<p class="text-center total">Total for this year is: ' + miles.toFixed(1) + '</p>');
+				$('#miles-months').append('<p class="text-center total">Total for this year is: <strong>' + miles.toFixed(1) + '</strong></p>');
 			}
 
 		} else {
@@ -94,7 +95,47 @@
 	}
 
 	function daysPerMonth(month,year) {
-		return new Date(year, month, 0).getDate();
+		var numberOfMonth = 0;
+		switch (month) {
+			case 'Jan':
+			default:
+				numberOfMonth = 1;
+				break;
+			case 'Feb':
+				numberOfMonth = 2;
+				break;
+			case 'Mar':
+				numberOfMonth = 3;
+				break;
+			case 'Apr':
+				numberOfMonth = 4;
+				break;
+			case 'May':
+				numberOfMonth = 5;
+				break;
+			case 'Jun':
+				numberOfMonth = 6;
+				break;
+			case 'Jul':
+				numberOfMonth = 7;
+				break;
+			case 'Aug':
+				numberOfMonth = 8;
+				break;
+			case 'Sep':
+				numberOfMonth = 9;
+				break;
+			case 'Oct':
+				numberOfMonth = 10;
+				break;
+			case 'Nov':
+				numberOfMonth = 11;
+				break;
+			case 'Dec':
+				numberOfMonth = 12;
+				break;	
+		}
+		return new Date(year, numberOfMonth, 0).getDate();
 	}
 
 	function yearsDropdown() {
@@ -174,7 +215,7 @@
 		var years = $('#year').val();
 		var totalMiles = inputMiles * years;
 		if (!isNaN(totalMiles)) {
-			$('#total').html('<p>The total Miles after ' + years + ' years is: ' + totalMiles);
+			$('#total').html('<p>The total Miles after ' + years + ' years is: <strong>' + totalMiles + ' Miles.</strong></p>');
 		}
 	}
 

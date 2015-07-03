@@ -163,9 +163,28 @@
 		$('#month').on('change', function () {
 			var monthValue = $('#month').val();
 			var days = daysPerMonth(monthValue, 2015);
+			var add;
 			$('#day').html("");
 			for (var i = 0; i < days; i++) {
-				$('#day').append('<option>' + (i+1) + '</option>');
+				switch (i) {
+					case 0:
+					case 20:
+					case 30:
+						add = 'st';
+						break;
+					case 1:
+					case 21:
+						add = 'nd';
+						break;
+					case 2:
+					case 22:
+						add = 'rd';
+						break;
+					default:
+						add = 'th';
+						break;
+				}
+				$('#day').append('<option>' + (i+1) + add + '</option>');
 			}
 		});
 	}

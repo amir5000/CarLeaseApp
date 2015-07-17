@@ -13,11 +13,11 @@
 		var novmonths		= ['Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
 		var decmonths		= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-		var months			= [];
-		var miles			= 0;
+		var months		= [];
+		var miles		= 0;
 		var milesPerMonth 	= 0;
 		var inputMiles 		= $('#miles').val();
-		var years 			= $('#year').val();
+		var years 		= $('#year').val();
 		var startMonth 		= $('#month').val();
 		var startDay 		= $('#day').val();
 		milesPerMonth 		= inputMiles / 12;
@@ -140,7 +140,6 @@
 
 	function yearsDropdown() {
 		var yearsDropdown	= ['Total years', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-
 		for (var i = 0; i < yearsDropdown.length; i++) {
 			$('#year').append('<option>' + yearsDropdown[i] + '</option>');
 		}
@@ -148,7 +147,6 @@
 
 	function monthsDropDown() {
 		var monthsDropDown	= ['Starting Month', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
 		for (var i = 0; i < monthsDropDown.length; i++) {
 			$('#month').append('<option>' + monthsDropDown[i] + '</option>');
 		}
@@ -161,8 +159,8 @@
 		}
 
 		$('#month').on('change', function () {
-			var monthValue = $('#month').val();
-			var days = daysPerMonth(monthValue, 2015);
+			var monthValue	= $('#month').val();
+			var days	= daysPerMonth(monthValue, 2015);
 			var add;
 			$('#day').html("");
 			for (var i = 0; i < days; i++) {
@@ -184,7 +182,7 @@
 						add = 'th';
 						break;
 				}
-				$('#day').append('<option>' + (i+1) + add + '</option>');
+				$('#day').append('<option>' + (i + 1) + add + '</option>');
 			}
 		});
 	}
@@ -194,9 +192,9 @@
 	}
 
 	function totalMiles() {
-		var inputMiles = $('#miles').val();
-		var years = $('#year').val();
-		var totalMiles = inputMiles * years;
+		var inputMiles	= $('#miles').val();
+		var years	= $('#year').val();
+		var totalMiles	= inputMiles * years;
 		if (!isNaN(totalMiles)) {
 			$('#total').html('<p>The total Miles after ' + years + ' years is: <strong>' + totalMiles + ' Miles.</strong></p>');
 		}
@@ -211,6 +209,5 @@
 	button.on('click', clearOutput);
 	button.on('click', milesFunction);
 	button.on('click', totalMiles);
-
 	$('footer').append('<p>Created by Amir5000 &copy ' + year + '</p>')
 })();

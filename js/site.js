@@ -12,12 +12,11 @@
 		var octmonths		= ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
 		var novmonths		= ['Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
 		var decmonths		= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-		var months		= [];
-		var miles		= 0;
+		var months			= [];
+		var miles			= 0;
 		var milesPerMonth 	= 0;
 		var inputMiles 		= $('#miles').val();
-		var years 		= $('#year').val();
+		var years 			= $('#year').val();
 		var startMonth 		= $('#month').val();
 		var startDay 		= $('#day').val();
 		milesPerMonth 		= inputMiles / 12;
@@ -74,15 +73,18 @@
 				}
 				for (var i = 0; i < months.length; i++) {
 					miles += milesPerMonth;
+					var days;
+					var milesPerDay = 0;
 					if (i < 1) {
-						$('#miles-months').append('<p>Miles total to drive from ' + months[11] + ' ' + startDay + ' to ' + months[0] + ' ' + startDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');			
+						$('#miles-months').append('<p>Miles total to drive from ' + months[11] + ' ' + startDay + ' to ' + months[0] + ' ' + startDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
+						days = daysPerMonth(months[11], 2015 + j);	
+						milesPerDay += (milesPerMonth / days);	
 					} else {
 						$('#miles-months').append('<p>Miles total to drive from ' + months[i-1] + ' ' + startDay + ' to ' + months[i] + ' ' + startDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
+						days = daysPerMonth(months[i-1], 2015 + j);
+						milesPerDay += (milesPerMonth / days);
 					}
 					
-					var days = daysPerMonth(months[i], 2015 + j);
-					var milesPerDay = 0;
-					milesPerDay += (milesPerMonth / days);
 					$('#miles-months').append('<p class="day">And a total of <strong>' + milesPerDay.toFixed(1) + '</strong> miles per day.</p>');			
 				}
 				

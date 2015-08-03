@@ -11,3 +11,7 @@ You enter the your miles per year, then select the amount of years the lease is 
 * CSS
 * Javascript
 * jQuery
+
+### To Do's:
+* Add a new section to calculate if the user wants to buy more anual miles on their lease and how much that would cost them.
+* convert the year to be done in months per terms instead of just years to be more standard with the industry.

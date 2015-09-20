@@ -81,14 +81,31 @@
 				for (var i = 0; i < months.length; i++) {
 					miles += milesPerMonth;
 					var days;
+					var endDay;
 					var milesPerDay = 0;
 					if (i < 1) {
-						$('#miles-months').append('<p>Miles total to drive from ' + months[11] + ' ' + startDay + ' to ' + months[0] + ' ' + startDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
-						days = daysPerMonth(months[11], 2015 + j);	
-						milesPerDay += (milesPerMonth / days);	
+						days = daysPerMonth(months[11], 2015 + j);
+						if (startDay === '31st' || startDay === '30th' ) {
+							if (startDay === '31st') {
+								endDay = '30th';
+							} else {
+								endDay = '31st';
+							}
+						}
+						$('#miles-months').append('<p>Miles total to drive from ' + months[11] + ' ' + startDay + ' to ' + months[0] + ' ' + endDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
+						milesPerDay += (milesPerMonth / days);
 					} else {
-						$('#miles-months').append('<p>Miles total to drive from ' + months[i-1] + ' ' + startDay + ' to ' + months[i] + ' ' + startDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
 						days = daysPerMonth(months[i-1], 2015 + j);
+						if (startDay === '31st' || startDay === '30th') {
+							if (days === 31) {
+								endDay = '30th';
+								startDay = '31st';
+							} else {
+								endDay = '31st';
+								startDay = '30th';
+							}
+						}
+						$('#miles-months').append('<p>Miles total to drive from ' + months[i-1] + ' ' + startDay + ' to ' + months[i] + ' ' + endDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
 						milesPerDay += (milesPerMonth / days);
 					}
 					

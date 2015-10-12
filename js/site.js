@@ -91,6 +91,8 @@
 							} else {
 								endDay = '31st';
 							}
+						} else {
+							endDay = startDay;
 						}
 						$('#miles-months').append('<p>Miles total to drive from ' + months[11] + ' ' + startDay + ' to ' + months[0] + ' ' + endDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
 						milesPerDay += (milesPerMonth / days);
@@ -104,6 +106,8 @@
 								endDay = '31st';
 								startDay = '30th';
 							}
+						} else {
+							endDay = startDay;
 						}
 						$('#miles-months').append('<p>Miles total to drive from ' + months[i-1] + ' ' + startDay + ' to ' + months[i] + ' ' + endDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
 						milesPerDay += (milesPerMonth / days);

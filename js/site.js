@@ -15,9 +15,9 @@
 	var daysStart		= ['Select a month first'];
 	var monthTerm		= ['Select length of term', '12', '24', '36', '48', '60', '72', '84', '96', '108', '120'];
 	var months			= [];
-	var miles			= 0;
-	var milesPerMonth 	= 0;
-	var numberOfMonth	= 0;
+	var miles;
+	var milesPerMonth;
+	var numberOfMonth;
 	var d = new Date();
 	var year = d.getFullYear();
 	var button = $('button');
@@ -27,6 +27,9 @@
 		var years 			= $('#year option:selected').index();	
 		var startMonth 		= $('#month').val();
 		var startDay 		= $('#day').val();
+		miles				= 0;
+		numberOfMonth		= 0;
+		milesPerMonth		= 0; // to reset the miles and not keep incrementing them as you click the senerate button
 		milesPerMonth 		= inputMiles / 12;
 		switch (startMonth) {
 			case janmonths[11]:

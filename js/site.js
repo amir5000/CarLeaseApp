@@ -225,7 +225,7 @@
 		var years		= $('#year option:selected').index();
 		var totalMiles	= inputMiles * years;
 		if (!isNaN(totalMiles)) {
-			$('#total').html('<p>The total Miles after ' + years + ' years is: <strong>' + totalMiles + ' Miles.</strong></p>');
+			$('#total').html('<p>Total Miles allowed after ' + years + ' years is: <strong>' + totalMiles + ' Miles.</strong></p>');
 		}
 	}
 	yearsDropdown();

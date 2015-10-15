@@ -73,8 +73,8 @@
 				break;
 		}
 
-		if (milesPerMonth == '' || milesPerMonth == 0 || years == '' || years == 0 ) {
-			alert('Please enter valid miles and year');
+		if (milesPerMonth == 0 || years == '' || years == 0 ) {
+			invalidInputs('Please enter valid miles and year');
 		} else if (!isNaN(milesPerMonth) && !isNaN(years)) {
 			for (var j = 0; j < years; j++) {
 				$('#miles-months').append('<h1>Year #' + (j + 1) + '</h1>');
@@ -218,6 +218,12 @@
 
 	function clearOutput() {
 		$('#miles-months').html("");
+	}
+
+	function invalidInputs(message) {
+		var milesInput = $('#miles');
+		$('#message').html( '<h3>' + message + '</h3>');
+		milesInput.focus();
 	}
 
 	function totalMiles() {

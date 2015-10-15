@@ -40,6 +40,10 @@ h1 {
 	text-align: center;
 }
 
+.jumbotron {
+    position: relative;
+}
+
 .jumbotron p {
 	font-size: 16px;
 	text-align: center;

@@ -71,56 +71,50 @@
 				milesPerMonth = 0;
 				break;
 		}
-
-		if (!isNaN(milesPerMonth) && !isNaN(years)) {
-			for (var j = 0; j < years; j++) {
-				$('#miles-months').append('<h1>Year #' + (j + 1) + '</h1>');
-				if (j > 0) {
-					$('#miles-months').append('<hr></hr>');
-				}
-				for (var i = 0; i < months.length; i++) {
-					miles += milesPerMonth;
-					var days;
-					var endDay;
-					var milesPerDay = 0;
-					if (i < 1) {
-						days = daysPerMonth(months[11], 2015 + j);
-						if (startDay === '31st' || startDay === '30th' ) {
-							if (startDay === '31st') {
-								endDay = '30th';
-							} else {
-								endDay = '31st';
-							}
+		for (var j = 0; j < years; j++) {
+			$('#miles-months').append('<h1>Year #' + (j + 1) + '</h1>');
+			if (j > 0) {
+				$('#miles-months').append('<hr></hr>');
+			}
+			for (var i = 0; i < months.length; i++) {
+				miles += milesPerMonth;
+				var days;
+				var endDay;
+				var milesPerDay = 0;
+				if (i < 1) {
+					days = daysPerMonth(months[11], 2015 + j);
+					if (startDay === '31st' || startDay === '30th' ) {
+						if (startDay === '31st') {
+							endDay = '30th';
 						} else {
-							endDay = startDay;
+							endDay = '31st';
 						}
-						$('#miles-months').append('<p>Miles total to drive from ' + months[11] + ' ' + startDay + ' to ' + months[0] + ' ' + endDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
-						milesPerDay += (milesPerMonth / days);
 					} else {
-						days = daysPerMonth(months[i-1], 2015 + j);
-						if (startDay === '31st' || startDay === '30th') {
-							if (days === 31) {
-								endDay = '30th';
-								startDay = '31st';
-							} else {
-								endDay = '31st';
-								startDay = '30th';
-							}
-						} else {
-							endDay = startDay;
-						}
-						$('#miles-months').append('<p>Miles total to drive from ' + months[i-1] + ' ' + startDay + ' to ' + months[i] + ' ' + endDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
-						milesPerDay += (milesPerMonth / days);
+						endDay = startDay;
 					}
-					
-					$('#miles-months').append('<p class="day">And a total of <strong>' + milesPerDay.toFixed(1) + '</strong> miles per day.</p>');			
+					$('#miles-months').append('<p>Miles total to drive from ' + months[11] + ' ' + startDay + ' to ' + months[0] + ' ' + endDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
+					milesPerDay += (milesPerMonth / days);
+				} else {
+					days = daysPerMonth(months[i-1], 2015 + j);
+					if (startDay === '31st' || startDay === '30th') {
+						if (days === 31) {
+							endDay = '30th';
+							startDay = '31st';
+						} else {
+							endDay = '31st';
+							startDay = '30th';
+						}
+					} else {
+						endDay = startDay;
+					}
+					$('#miles-months').append('<p>Miles total to drive from ' + months[i-1] + ' ' + startDay + ' to ' + months[i] + ' ' + endDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
+					milesPerDay += (milesPerMonth / days);
 				}
 				
-				$('#miles-months').append('<p class="text-center total">Total for this year is: <strong>' + miles.toFixed(1) + '</strong></p>');
+				$('#miles-months').append('<p class="day">And a total of <strong>' + milesPerDay.toFixed(1) + '</strong> miles per day.</p>');			
 			}
-
-		} else {
-			alert('Please enter valid miles and year');
+			
+			$('#miles-months').append('<p class="text-center total">Total for this year is: <strong>' + miles.toFixed(1) + '</strong></p>');
 		}
 	}
 
@@ -225,13 +219,13 @@
 		$('.form-control').removeClass('error');
 		if (isNaN(inputMiles.val()) || inputMiles.val() == '') {
 			inputMiles.focus().addClass('error');
-			$('#message').html( '<h3 class="text-center">"' + input + '" is not a valid number</h3>');
+			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center">"' + input + '" is not a valid number</h4></div>');
 		} else if (isNaN(years.find('option:selected').val())) {
 			years.focus().addClass('error');
-			$('#message').html( '<h3 class="text-center">Select a valid term length</h3>');
+			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center">Select a valid term length</h4></div>');
 		} else if (startMonth.find('option:selected').val() === 'Starting Month') {
 			startMonth.focus().addClass('error');
-			$('#message').html( '<h3 class="text-center">Select a valid starting month</h3>');
+			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center">Select a valid starting month</h4></div>');
 		} else {
 			return false;
 		}
@@ -255,10 +249,9 @@
 		startMonth 		= $('#month').val();
 		startDay 		= $('#day').val();	
 		milesPerMonth	= inputMiles / 12;
-		
 		clearOutput();
 		
-		if (milesPerMonth == 0 || years == '' || years == 0 || startMonth === 'Starting Month') {
+		if (isNaN(milesPerMonth) || milesPerMonth == 0 || isNaN(years) || startMonth === 'Starting Month') {
 			invalidInputs(inputMiles);
 		} else {
 			totalMiles();

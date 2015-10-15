@@ -7,6 +7,12 @@ button.form-control {
 	width: 48%;
 }
 
+.form-control.error:focus {
+	border-color: red;
+	-webkit-box-shadow: inset 0 1px 1px rgba(255,0,0,.075),0 0 8px rgba(255,90,175,.6);
+    box-shadow: inset 0 1px 1px rgba(255,0,0,.075),0 0 8px rgba(255,90,175,.6);
+}
+
 hr {
 	  border-top: 1px solid #000;
 }

@@ -1,4 +1,5 @@
 (function() {
+	var miles, milesPerMonth, numberOfMonth, inputMiles, years, startMonth, startDay;
 	var janmonths		= ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'];
 	var febmonths		= ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'];
 	var marmonths		= ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
@@ -15,18 +16,16 @@
 	var daysStart		= ['Select a month first'];
 	var monthTerm		= ['Select length of term', '12', '24', '36', '48', '60', '72', '84', '96', '108', '120'];
 	var months			= [];
-	var miles;
-	var milesPerMonth;
-	var numberOfMonth;
-	var d = new Date();
-	var year = d.getFullYear();
-	var button = $('button');
+	var d 				= new Date();
+	var year 			= d.getFullYear();
+	var button 			= $('button');
+	
 
 	function milesFunction() {
-		var inputMiles 		= $('#miles').val();
-		var years 			= $('#year option:selected').index();	
-		var startMonth 		= $('#month').val();
-		var startDay 		= $('#day').val();
+		inputMiles 		= $('#miles').val();
+		years 			= $('#year option:selected').index();	
+		startMonth 		= $('#month').val();
+		startDay 		= $('#day').val();	
 		miles				= 0; // to reset the miles and not keep incrementing them as you click the generate miles button
 		numberOfMonth		= 0; // to reset the miles and not keep incrementing them as you click the generate miles button
 		milesPerMonth		= 0; // to reset the miles and not keep incrementing them as you click the generate miles button
@@ -73,9 +72,7 @@
 				break;
 		}
 
-		if (milesPerMonth == 0 || years == '' || years == 0 ) {
-			invalidInputs('Please enter valid miles and year');
-		} else if (!isNaN(milesPerMonth) && !isNaN(years)) {
+		if (!isNaN(milesPerMonth) && !isNaN(years)) {
 			for (var j = 0; j < years; j++) {
 				$('#miles-months').append('<h1>Year #' + (j + 1) + '</h1>');
 				if (j > 0) {
@@ -217,18 +214,33 @@
 	}
 
 	function clearOutput() {
-		$('#miles-months').html("");
+		$('#miles-months').html('');
+		$('#message').html('');
 	}
 
-	function invalidInputs(message) {
-		var milesInput = $('#miles');
-		$('#message').html( '<h3>' + message + '</h3>');
-		milesInput.focus();
+	function invalidInputs(input) {
+		inputMiles	= $('#miles');
+		years 		= $('#year');
+		startMonth	= $('#month');
+		$('.form-control').removeClass('error');
+		if (isNaN(inputMiles.val()) || inputMiles.val() == '') {
+			inputMiles.focus().addClass('error');
+			$('#message').html( '<h3 class="text-center">"' + input + '" is not a valid number</h3>');
+		} else if (isNaN(years.find('option:selected').val())) {
+			years.focus().addClass('error');
+			$('#message').html( '<h3 class="text-center">Select a valid term length</h3>');
+		} else if (startMonth.find('option:selected').val() === 'Starting Month') {
+			startMonth.focus().addClass('error');
+			$('#message').html( '<h3 class="text-center">Select a valid starting month</h3>');
+		} else {
+			return false;
+		}
+		
 	}
 
 	function totalMiles() {
-		var inputMiles	= $('#miles').val();
-		var years		= $('#year option:selected').index();
+		inputMiles	= $('#miles').val();
+		years		= $('#year option:selected').index();
 		var totalMiles	= inputMiles * years;
 		if (!isNaN(totalMiles)) {
 			$('#total').html('<p>Total Miles allowed after ' + years + ' years is: <strong>' + totalMiles + ' Miles.</strong></p>');
@@ -237,8 +249,22 @@
 	yearsDropdown();
 	monthsDropDown();
 	daysDropDown();
-	button.on('click', clearOutput);
-	button.on('click', milesFunction);
-	button.on('click', totalMiles);
+	button.on('click', function() {
+		inputMiles 		= $('#miles').val();
+		years 			= $('#year option:selected').index();	
+		startMonth 		= $('#month').val();
+		startDay 		= $('#day').val();	
+		milesPerMonth	= inputMiles / 12;
+		
+		clearOutput();
+		
+		if (milesPerMonth == 0 || years == '' || years == 0 || startMonth === 'Starting Month') {
+			invalidInputs(inputMiles);
+		} else {
+			totalMiles();
+			milesFunction();
+		}
+		
+	});
 	$('footer').append('<p>Created by Amir5000 &copy ' + year + '</p>')
 })();

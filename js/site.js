@@ -19,7 +19,52 @@
 	var d 				= new Date();
 	var year 			= d.getFullYear();
 	var button 			= $('button');
-	
+
+	function addToIndex(days) {
+		var add;
+		switch (days) {
+			case 0:
+			case 20:
+			case 30:
+				add = 'st';
+				break;
+			case 1:
+			case 21:
+				add = 'nd';
+				break;
+			case 2:
+			case 22:
+				add = 'rd';
+				break;
+			default:
+				add = 'th';
+				break;
+		}
+		return add;
+	}
+
+	function addTo(days) {
+		var add;
+		switch (days) {
+			case 1:
+			case 21:
+			case 31:
+				add = 'st';
+				break;
+			case 2:
+			case 22:
+				add = 'nd';
+				break;
+			case 3:
+			case 24:
+				add = 'rd';
+				break;
+			default:
+				add = 'th';
+				break;
+		}
+		return add;
+	}
 
 	function milesFunction() {
 		inputMiles 		= $('#miles').val();
@@ -80,40 +125,43 @@
 				miles += milesPerMonth;
 				var days;
 				var endDay;
+				var daysStart;
+				var daysEnd;
 				var milesPerDay = 0;
 				if (i < 1) {
-					days = daysPerMonth(months[11], 2015 + j);
-					if (startDay === '31st' || startDay === '30th' ) {
-						if (startDay === '31st') {
-							endDay = '30th';
-						} else {
-							endDay = '31st';
-						}
+					if (startDay === '30th' || startDay === '31st' ) {
+						daysStart = daysPerMonth(months[11], 2015 + j);
+						daysEnd = daysPerMonth(months[0], 2015 + j);
+						var addedStartDays = addTo(daysStart);
+						var addedEndDays = addTo(daysEnd);
+						days = daysStart + addedStartDays;
+						endDay = daysEnd + addedEndDays;
 					} else {
-						endDay = startDay;
+						days = startDay;
+						endDay = days;
 					}
-					$('#miles-months').append('<p>Miles total to drive from ' + months[11] + ' ' + startDay + ' to ' + months[0] + ' ' + endDay + ': <strong>' + numberWithCommas(miles) + '</strong></p>');
-					milesPerDay += (milesPerMonth / days);
+					
+					$('#miles-months').append('<p>Miles total to drive from ' + months[11] + ' ' + days + ' to ' + months[0] + ' ' + endDay + ': <strong>' + numberWithCommas(miles) + '</strong></p>');
+					milesPerDay += (milesPerMonth / daysEnd);
+
 				} else {
-					days = daysPerMonth(months[i-1], 2015 + j);
-					if (startDay === '31st' || startDay === '30th') {
-						if (days === 31) {
-							endDay = '30th';
-							startDay = '31st';
-						} else {
-							endDay = '31st';
-							startDay = '30th';
-						}
+					if (startDay === '30th' || startDay === '31st' ) {
+						daysStart = daysPerMonth(months[i-1], 2015 + j);
+						daysEnd = daysPerMonth(months[i], 2015 + j);
+						var addedStartDays = addTo(daysStart);
+						var addedEndDays = addTo(daysEnd);
+						days = daysStart + addedStartDays;
+						endDay = daysEnd + addedEndDays;
 					} else {
-						endDay = startDay;
+						days = startDay;
+						endDay = days;
 					}
-					$('#miles-months').append('<p>Miles total to drive from ' + months[i-1] + ' ' + startDay + ' to ' + months[i] + ' ' + endDay + ': <strong>' + numberWithCommas(miles) + '</strong></p>');
-					milesPerDay += (milesPerMonth / days);
-				}
-				
+
+					$('#miles-months').append('<p>Miles total to drive from ' + months[i-1] + ' ' + days + ' to ' + months[i] + ' ' + endDay + ': <strong>' + numberWithCommas(miles) + '</strong></p>');
+					milesPerDay += (milesPerMonth / daysEnd);
+				} 
 				$('#miles-months').append('<p class="day">And a total of <strong>' + numberWithCommas(milesPerDay) + '</strong> miles per day.</p>');			
 			}
-			
 			$('#miles-months').append('<p class="text-center total">Total for this year is: <strong>' + numberWithCommas(miles) + '</strong></p>');
 		}
 	}
@@ -181,27 +229,9 @@
 		$('#month').on('change', function () {
 			var monthValue	= $('#month').val();
 			var days	= daysPerMonth(monthValue, 2015);
-			var add;
 			$('#day').html("");
 			for (var i = 0; i < days; i++) {
-				switch (i) {
-					case 0:
-					case 20:
-					case 30:
-						add = 'st';
-						break;
-					case 1:
-					case 21:
-						add = 'nd';
-						break;
-					case 2:
-					case 22:
-						add = 'rd';
-						break;
-					default:
-						add = 'th';
-						break;
-				}
+				var add = addToIndex(i);
 				$('#day').append('<option>' + (i + 1) + add + '</option>');
 			}
 		});
@@ -251,8 +281,6 @@
 	    	parts = parts + '.0'
 	    	return parts;
 	    }
-	    
-	    
 	}
 
 	yearsDropdown();

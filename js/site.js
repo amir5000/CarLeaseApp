@@ -92,7 +92,7 @@
 					} else {
 						endDay = startDay;
 					}
-					$('#miles-months').append('<p>Miles total to drive from ' + months[11] + ' ' + startDay + ' to ' + months[0] + ' ' + endDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
+					$('#miles-months').append('<p>Miles total to drive from ' + months[11] + ' ' + startDay + ' to ' + months[0] + ' ' + endDay + ': <strong>' + numberWithCommas(miles) + '</strong></p>');
 					milesPerDay += (milesPerMonth / days);
 				} else {
 					days = daysPerMonth(months[i-1], 2015 + j);
@@ -107,14 +107,14 @@
 					} else {
 						endDay = startDay;
 					}
-					$('#miles-months').append('<p>Miles total to drive from ' + months[i-1] + ' ' + startDay + ' to ' + months[i] + ' ' + endDay + ': <strong>' + miles.toFixed(1) + '</strong></p>');
+					$('#miles-months').append('<p>Miles total to drive from ' + months[i-1] + ' ' + startDay + ' to ' + months[i] + ' ' + endDay + ': <strong>' + numberWithCommas(miles) + '</strong></p>');
 					milesPerDay += (milesPerMonth / days);
 				}
 				
-				$('#miles-months').append('<p class="day">And a total of <strong>' + milesPerDay.toFixed(1) + '</strong> miles per day.</p>');			
+				$('#miles-months').append('<p class="day">And a total of <strong>' + numberWithCommas(milesPerDay) + '</strong> miles per day.</p>');			
 			}
 			
-			$('#miles-months').append('<p class="text-center total">Total for this year is: <strong>' + miles.toFixed(1) + '</strong></p>');
+			$('#miles-months').append('<p class="text-center total">Total for this year is: <strong>' + numberWithCommas(miles) + '</strong></p>');
 		}
 	}
 
@@ -216,16 +216,15 @@
 		inputMiles	= $('#miles');
 		years 		= $('#year');
 		startMonth	= $('#month');
-		$('.form-control').removeClass('error');
 		if (isNaN(inputMiles.val()) || inputMiles.val() == '') {
 			inputMiles.focus().addClass('error');
-			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center">"' + input + '" is not a valid number</h4></div>');
+			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> "' + input + '" is not a valid number</h4></div>');
 		} else if (isNaN(years.find('option:selected').val())) {
 			years.focus().addClass('error');
-			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center">Select a valid term length</h4></div>');
+			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid term length</h4></div>');
 		} else if (startMonth.find('option:selected').val() === 'Starting Month') {
 			startMonth.focus().addClass('error');
-			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center">Select a valid starting month</h4></div>');
+			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid starting month</h4></div>');
 		} else {
 			return false;
 		}
@@ -237,9 +236,25 @@
 		years		= $('#year option:selected').index();
 		var totalMiles	= inputMiles * years;
 		if (!isNaN(totalMiles)) {
-			$('#total').html('<p>Total Miles allowed after ' + years + ' years is: <strong>' + totalMiles + ' Miles.</strong></p>');
+			$('#total').html('<p>Total Miles allowed after ' + years + ' years is: <strong>' + numberWithCommas(totalMiles) + ' Miles.</strong></p>');
 		}
 	}
+
+	function numberWithCommas(x) {
+	    var parts = x.toString().split(".");
+	    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    if (parts[1]) {
+	    	var substr = parts[1].substr(0,1);
+	    	parts[1] = parts[1].replace(parts[1], substr);
+	    	return parts.join(".");
+	    } else {
+	    	parts = parts + '.0'
+	    	return parts;
+	    }
+	    
+	    
+	}
+
 	yearsDropdown();
 	monthsDropDown();
 	daysDropDown();
@@ -250,7 +265,7 @@
 		startDay 		= $('#day').val();	
 		milesPerMonth	= inputMiles / 12;
 		clearOutput();
-		
+		$('.form-control').removeClass('error');
 		if (isNaN(milesPerMonth) || milesPerMonth == 0 || isNaN(years) || startMonth === 'Starting Month') {
 			invalidInputs(inputMiles);
 		} else {

@@ -137,7 +137,7 @@
 						days = daysStart + addedStartDays;
 						endDay = daysEnd + addedEndDays;
 						milesPerDay += (milesPerMonth / daysEnd);
-					} else if (months[i-1 === 'Feb']) {
+					} else if (months[11] === 'Jan') {
 						daysStart = daysPerMonth(months[11], 2015 + j);
 						days = startDay;
 						endDay = days;
@@ -158,8 +158,8 @@
 						days = daysStart + addedStartDays;
 						endDay = daysEnd + addedEndDays;
 						milesPerDay += (milesPerMonth / daysEnd);
-					} else if (months[i-1 === 'Feb']) {
-						daysStart = daysPerMonth(months[i], 2015 + j);
+					} else if (months[i-1] === 'Feb') {
+						daysStart = daysPerMonth(months[i-1], 2015 + j);
 						days = startDay;
 						endDay = days;
 						milesPerDay += (milesPerMonth / daysStart);

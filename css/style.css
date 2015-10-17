@@ -1,16 +1,35 @@
 button.form-control {
-	width: 200px;
-	margin: 20px auto;
+	clear: both;
+	margin: 0 auto 20px;
 	text-align: center;
 	color: yellow;
+	font-size: 20px;
 	background-color: darkgreen;
-	width: 48%;
+	width: 38%;
+	height: auto;
+}
+
+button.form-control i {
+	font-size: 24px;
+}
+
+button.form-control:hover i {
+    -webkit-animation: fa-spin 2s infinite linear;
+    animation: fa-spin 2s infinite linear;
 }
 
 .form-control.error:focus {
 	border-color: red;
 	-webkit-box-shadow: inset 0 1px 1px rgba(255,0,0,.075),0 0 8px rgba(255,90,175,.6);
     box-shadow: inset 0 1px 1px rgba(255,0,0,.075),0 0 8px rgba(255,90,175,.6);
+}
+
+h1 i {
+	transform:         scale(.3); /* CSS3 */
+	-o-transform:      scale(.3); /* Opera */
+	-ms-transform:     scale(.3); /* IE 9 */
+	-moz-transform:    scale(.3); /* Firefox */
+	-webkit-transform: scale(.3); /* Webkit */
 }
 
 hr {
@@ -53,7 +72,74 @@ input.form-control, select.form-control {
 	width: 23%;
 	margin: 10px 1%;
 	float: left;
+	height: 40px;
+	font-size: 17px;
+    margin-bottom: 40px;
 }
+
+select.form-control {
+	cursor: pointer;
+}
+
+@keyframes carScale { /* CSS3 */
+	0%   { 
+		transform:         scale(.3); /* CSS3 */
+		-o-transform:      scale(.3); /* Opera */
+		-ms-transform:     scale(.3); /* IE 9 */
+	}
+	50%   { 
+		transform:         scale(1.3); /* CSS3 */
+		-o-transform:      scale(1.3); /* Opera */
+		-ms-transform:     scale(1.3); /* IE 9 */
+	}
+	80%   { 
+		transform:         scale(1); /* CSS3 */
+		-o-transform:      scale(1); /* Opera */
+		-ms-transform:     scale(1); /* IE 9 */
+	}
+	100%   { 
+		transform:         scale(1); /* CSS3 */
+		-o-transform:      scale(1); /* Opera */
+		-ms-transform:     scale(1); /* IE 9 */
+	}
+}
+@-moz-keyframes ex4 { /* Firefox */
+	0%   {
+		-moz-transform:    scale(.3); /* Firefox */
+	}
+	50% {
+		-moz-transform:    scale(1.3); /* Firefox */
+	}
+	80% {
+		-moz-transform:    scale(1); /* Firefox */
+	}
+	100% {
+		-moz-transform:    scale(1); /* Firefox */
+	}
+}
+@-webkit-keyframes ex4 { /* Webkit */
+	0%   {
+		-webkit-transform: scale(.3); /* Webkit */
+	}
+	50% {
+		-webkit-transform: scale(1.3); /* Webkit */
+	}
+	80% {
+		-webkit-transform: scale(1); /* Webkit */
+	}
+	100% {
+		-webkit-transform: scale(1); /* Webkit */
+	}
+}
+
+.car-scale {
+	animation:         carScale 5s ease 1s infinite; /* CSS3 */
+	-moz-animation:    carScale 5s ease 1s infinite; /* Firefox */
+	-webkit-animation: carScale 5s ease 1s infinite; /* Webkit */
+}
+
+
+
 
 @media (max-width: 768px) {
 	.container {
@@ -65,5 +151,9 @@ input.form-control, select.form-control {
 	#miles-months p {
 		width: 98%;
 		text-align: center;
+	}
+	input.form-control, select.form-control {
+		width: 100%;
+		margin: 10px 0;
 	}
 }

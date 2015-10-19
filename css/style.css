@@ -39,7 +39,7 @@ hr {
 #miles-months p {
     display: inline-block;
     margin: 5px 2.5%;
-    width: 45%;
+    width: 70%;
 }
 
 #total p {
@@ -47,7 +47,7 @@ hr {
 	font-size: 20px;
 }
 #miles-months p.day {
-    margin-right: 0;
+    width: 20%;
 }
 #miles-months p.total {
 	margin: 20px 0 40px;
@@ -62,7 +62,6 @@ h1 {
 
 .jumbotron {
     position: relative;
-    text-align: center;
 }
 
 .jumbotron p {

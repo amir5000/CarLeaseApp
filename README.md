@@ -13,7 +13,7 @@ Start by entering the miles per year that you are allowed on your lease, then se
 * jQuery
 
 ### To Do's:
-* Fix if you select the 31st or the 30th of a month to be the starting day, make it display the correct end of month day later in the results.
+* ~~Fix if you select the 31st or the 30th of a month to be the starting day, make it display the correct end of month day later in the results.~~
 * ~~Add a new section to calculate if the user wants to buy more anual miles on their lease and how much that would cost them.~~ clean up the way that was implimented.
-* Convert the year to be done in months per terms instead of just years to be more standard with the industry.
+* ~~Convert the year to be done in months per terms instead of just years to be more standard with the industry.~~
 * Add a field of the total miles driven to date and let the app compare that to the same date in the projection table to compare and determine if the driver is going over the miles limit.

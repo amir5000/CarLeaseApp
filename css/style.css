@@ -69,12 +69,13 @@ h1 {
 }
 
 input.form-control, select.form-control {
-	width: 23%;
-	margin: 10px 1%;
-	float: left;
-	height: 40px;
-	font-size: 17px;
+    width: 31%;
+    margin: 10px 1%;
+    float: none;
+    height: 40px;
+    font-size: 17px;
     margin-bottom: 40px;
+    display: inline-block;
 }
 
 select.form-control {

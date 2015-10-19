@@ -19,6 +19,10 @@
 	var d 				= new Date();
 	var year 			= d.getFullYear();
 	var button 			= $('button');
+	var startYear		= ['Starting Year'];
+	var currentDate 	= new Date();
+    var currentYear 	= currentDate.getFullYear();
+    startYear.push(currentYear - 3, currentYear - 2, currentYear - 1, currentYear );
 
 	function addToIndex(days) {
 		var add;
@@ -64,6 +68,49 @@
 				break;
 		}
 		return add;
+	}
+
+	function getMonthName(month) {
+		switch (month) {
+			case 1:
+			default:
+				monthName = 'Jan';
+				break;
+			case 2:
+				monthName = 'Feb';
+				break;
+			case 3:
+				monthName = 'Mar';
+				break;
+			case 4:
+				monthName = 'Apr';
+				break;
+			case 5:
+				monthName = 'May';
+				break;
+			case 6:
+				monthName = 'Jun';
+				break;
+			case 7:
+				monthName = 'Jul';
+				break;
+			case 8:
+				monthName = 'Aug';
+				break;
+			case 9:
+				monthName = 'Sep';
+				break;
+			case 10:
+				monthName = 'Oct';
+				break;
+			case 11:
+				monthName = 'Nov';
+				break;
+			case 12:
+				monthName = 'Dec';
+				break;	
+		}
+		return monthName;
 	}
 
 	function milesFunction() {
@@ -116,13 +163,37 @@
 				milesPerMonth = 0;
 				break;
 		}
+		
+
 		for (var j = 0; j < years; j++) {
 			$('#miles-months').append('<h1>Year #' + (j + 1) + '</h1>');
 			if (j > 0) {
 				$('#miles-months').append('<hr></hr>');
 			}
+			currentYear = currentYear + j;
 			for (var i = 0; i < months.length; i++) {
+				var currentDate = new Date();
+	    		var currentMonth = currentDate.getMonth() + 1;
+	    		var currentDay = currentDate.getDate();
+	    		var compareDate = getMonthName(currentMonth);
+	    		var selectedYear = parseInt($('#startYear').val());
+	    		var newCurrentYear = (selectedYear + j) - currentYear;
+	    		if (newCurrentYear == -3) {
+	    			newCurrentYear =  currentYear - 3;
+	    		} else if (newCurrentYear == -2) {
+	    			newCurrentYear =  currentYear - 2;
+	    		} else if (newCurrentYear == -1) {
+	    			newCurrentYear =  currentYear - 1;
+	    		} else {
+	    			newCurrentYear =  currentYear;
+	    		}
+	    		
 				miles += milesPerMonth;
+				if (months[i] == compareDate && days > currentDay && newCurrentYear == currentYear) {
+	    			$('#total').append('<p>You are currently allowed to drive up to ' + numberWithCommas(miles) + '</p>');
+	    		} else if (months[i - 1] == compareDate && newCurrentYear == currentYear) {
+	    			$('#total').append('<p>You are currently allowed to drive up to ' + numberWithCommas(miles) + '</p>');
+	    		}
 				var days;
 				var endDay;
 				var daysStart;
@@ -226,6 +297,12 @@
 		}
 	}
 
+	function getStartYear() {
+		for (var i = 0; i < startYear.length; i++) {
+			$('#startYear').append('<option>' + startYear[i] + '</option>');
+		}
+	}
+
 	function monthsDropDown() {
 		for (var i = 0; i < monthsStart.length; i++) {
 			$('#month').append('<option>' + monthsStart[i] + '</option>');
@@ -256,6 +333,7 @@
 	function invalidInputs(input) {
 		inputMiles	= $('#miles');
 		years 		= $('#year');
+		startYear 	= $('#startYear')
 		startMonth	= $('#month');
 		if (isNaN(inputMiles.val()) || inputMiles.val() == '') {
 			inputMiles.focus().addClass('error');
@@ -263,6 +341,9 @@
 		} else if (isNaN(years.find('option:selected').val())) {
 			years.focus().addClass('error');
 			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid term length</h4></div>');
+		} else if (startYear.find('option:selected').val() === 'Starting Year') {
+			startYear.focus().addClass('error');
+			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid starting year</h4></div>');
 		} else if (startMonth.find('option:selected').val() === 'Starting Month') {
 			startMonth.focus().addClass('error');
 			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid starting month</h4></div>');
@@ -295,17 +376,19 @@
 	}
 
 	yearsDropdown();
+	getStartYear();
 	monthsDropDown();
 	daysDropDown();
 	button.on('click', function() {
 		inputMiles 		= $('#miles').val();
-		years 			= $('#year option:selected').index();	
+		years 			= $('#year option:selected').index();
+		startYear 		= $('#startYear').val();
 		startMonth 		= $('#month').val();
 		startDay 		= $('#day').val();	
 		milesPerMonth	= inputMiles / 12;
 		clearOutput();
 		$('.form-control').removeClass('error');
-		if (isNaN(milesPerMonth) || milesPerMonth == 0 || isNaN(years) || startMonth === 'Starting Month') {
+		if (isNaN(milesPerMonth) || milesPerMonth == 0 || isNaN(years) || startYear === 'Starting Year' || startMonth === 'Starting Month') {
 			invalidInputs(inputMiles);
 		} else {
 			totalMiles();

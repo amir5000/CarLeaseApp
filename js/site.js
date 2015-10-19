@@ -171,9 +171,9 @@
 					}
 					$('#miles-months').append('<p>Miles total to drive from ' + months[i-1] + ' ' + days + ' to ' + months[i] + ' ' + endDay + ': <strong>' + numberWithCommas(miles) + '</strong></p>');					
 				} 
-				$('#miles-months').append('<p class="day">And a total of <strong>' + numberWithCommas(milesPerDay) + '</strong> miles per day.</p>');			
+				$('#miles-months').append('<p class="day"><strong> & ' + numberWithCommas(milesPerDay) + '</strong> miles / day</p>');			
 			}
-			$('#miles-months').append('<p class="text-center total">Total for this year is: <strong>' + numberWithCommas(miles) + '</strong></p>');
+			$('#miles-months').append('<p class="text-center total">Total this year: <strong>' + numberWithCommas(miles) + '</strong></p>');
 		}
 	}
 

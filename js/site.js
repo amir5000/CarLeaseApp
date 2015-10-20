@@ -114,14 +114,15 @@
 	}
 
 	function milesFunction() {
-		inputMiles 		= $('#miles').val();
-		years 			= $('#year option:selected').index();	
-		startMonth 		= $('#month').val();
-		startDay 		= $('#day').val();	
+		inputMiles 			= $('#miles').val();
+		years 				= $('#year option:selected').index();	
+		startMonth 			= $('#month').val();
+		startDay 			= $('#day').val();	
 		miles				= 0; // to reset the miles and not keep incrementing them as you click the generate miles button
 		numberOfMonth		= 0; // to reset the miles and not keep incrementing them as you click the generate miles button
 		milesPerMonth		= 0; // to reset the miles and not keep incrementing them as you click the generate miles button
 		milesPerMonth 		= inputMiles / 12;
+		var end 			= true;
 		switch (startMonth) {
 			case janmonths[11]:
 				months = janmonths;
@@ -170,29 +171,20 @@
 			if (j > 0) {
 				$('#miles-months').append('<hr></hr>');
 			}
-			currentYear = currentYear + j;
 			for (var i = 0; i < months.length; i++) {
 				var currentDate = new Date();
 	    		var currentMonth = currentDate.getMonth() + 1;
 	    		var currentDay = currentDate.getDate();
 	    		var compareDate = getMonthName(currentMonth);
-	    		var selectedYear = parseInt($('#startYear').val());
-	    		var newCurrentYear = (selectedYear + j) - currentYear;
-	    		if (newCurrentYear == -3) {
-	    			newCurrentYear =  currentYear - 3;
-	    		} else if (newCurrentYear == -2) {
-	    			newCurrentYear =  currentYear - 2;
-	    		} else if (newCurrentYear == -1) {
-	    			newCurrentYear =  currentYear - 1;
-	    		} else {
-	    			newCurrentYear =  currentYear;
-	    		}
 	    		
 				miles += milesPerMonth;
-				if (months[i] == compareDate && days > currentDay && newCurrentYear == currentYear) {
+				if (months[i] == compareDate && days > currentDay && end == true) {
 	    			$('#total').append('<p>You are currently allowed to drive up to ' + numberWithCommas(miles) + '</p>');
-	    		} else if (months[i - 1] == compareDate && newCurrentYear == currentYear) {
+	    			end = false;
+
+	    		} else if (months[i - 1] == compareDate && end == true) {
 	    			$('#total').append('<p>You are currently allowed to drive up to ' + numberWithCommas(miles) + '</p>');
+	    			end = false;
 	    		}
 				var days;
 				var endDay;

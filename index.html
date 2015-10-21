@@ -27,11 +27,22 @@
 			</select>
 			<select id="day" class="form-control">
 			</select>
-			<button class="form-control"><i class="fa fa-cog"></i> Generate Miles</button>
+			<button id="genMiles" type="button" class="form-control"><i class="fa fa-cog"></i> Generate Miles</button>
+			<div class="clearfix hide get-current-term">
+				<h3>Get Current Miles Limit</h3>
+				<p>Select the current year that you are on in your lease to generate what the current limit is for this month.</p>
+				<select id="currentTerm" class="form-control">
+				</select>
+				<button id="genCurrent" type="button" class="form-control"><i class="fa fa-cog"></i> Get Current Miles</button>
+				<p id="currentMiles"></p>
+				<hr></hr>
+			</div>
+
 			<div class="car-container clearfix" id ="carContainer">
 				<div id="total"></div>
 				<div id="miles-months" class="row"></div>
 			</div>
+			
 		</div>
 		<footer>
 		</footer>

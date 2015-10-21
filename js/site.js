@@ -362,7 +362,7 @@
 	    	parts[1] = parts[1].replace(parts[1], substr);
 	    	return parts.join(".");
 	    } else {
-	    	parts = parts + '.0'
+	    	parts = parts + '.0';
 	    	return parts;
 	    }
 	}

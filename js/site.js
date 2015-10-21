@@ -211,7 +211,7 @@
 						endDay = days;
 						milesPerDay += (milesPerMonth / daysEnd);
 					}
-					$('#miles-months').append('<p><strong>' + numberWithCommas(miles) + '</strong> Miles total to drive from ' + months[11] + ' ' + days + ' to ' + months[0] + ' ' + endDay + '</p>');
+					$('#miles-months').append('<p class="col-sm-9"><strong>' + numberWithCommas(miles) + '</strong> Miles total to drive from ' + months[11] + ' ' + days + ' to ' + months[0] + ' ' + endDay + '</p>');
 				} else {
 					if (startDay === '31st') {
 						daysStart = daysPerMonth(months[i-1], 2015 + j);
@@ -232,11 +232,11 @@
 						endDay = days;
 						milesPerDay += (milesPerMonth / daysEnd);
 					}
-					$('#miles-months').append('<p><strong>' + numberWithCommas(miles) + '</strong> Miles total to drive from ' + months[i-1] + ' ' + days + ' to ' + months[i] + ' ' + endDay + '</p>');					
+					$('#miles-months').append('<p class="col-sm-9"><strong>' + numberWithCommas(miles) + '</strong> Miles total to drive from ' + months[i-1] + ' ' + days + ' to ' + months[i] + ' ' + endDay + '</p>');					
 				} 
-				$('#miles-months').append('<p class="day">Driving<strong> ' + numberWithCommas(milesPerDay) + '</strong> miles / day</p>');			
+				$('#miles-months').append('<p class="col-sm-3">Driving<strong> ' + numberWithCommas(milesPerDay) + '</strong> miles / day</p>');			
 			}
-			$('#miles-months').append('<p class="text-center total">Total this year: <strong>' + numberWithCommas(miles) + '</strong></p>');
+			$('#miles-months').append('<p class="col-sm-12 text-center total">Total this year: <strong>' + numberWithCommas(miles) + '</strong></p>');
 		}
 	}
 

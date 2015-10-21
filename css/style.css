@@ -38,20 +38,14 @@ hr {
 
 #miles-months p {
     display: inline-block;
-    margin: 5px 2.5%;
-    width: 70%;
 }
 
 #total p {
 	text-align: center;
 	font-size: 20px;
 }
-#miles-months p.day {
-    width: 20%;
-}
 #miles-months p.total {
 	margin: 20px 0 40px;
-	width: 100%;
 	font-size: 20px;
 	display: block;
 }

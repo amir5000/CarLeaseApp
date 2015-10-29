@@ -14,7 +14,7 @@
 	var decmonths		= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	var monthsStart		= ['Starting Month', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	var daysStart		= ['Select a month first'];
-	var monthTerm		= ['Select length of term', '12', '24', '36', '48', '60', '72', '84', '96', '108', '120'];
+	var monthTerm		= ['Select length of lease', '12 Months', '24 Months', '36 Months', '48 Months', '60 Months', '72 Months', '84 Months', '96 Months', '108 Months', '120 Months'];
 	var currentTerm		= ['Select current term', 'Term 1', 'Term 2', 'Term 3', 'Term 4', 'Term 5', 'Term 6', 'Term 7', 'Term 8', 'Term 9', 'Term 10'];
 	var months			= [];
 	var d 				= new Date();
@@ -22,6 +22,8 @@
 	var button 			= $('#genMiles');
 	var genCurrent		= $('#genCurrent');
 	var startYear		= ['Starting Year'];
+	var runGenerate		= false;
+	var runCurrent 		= false;
 
 	function addToIndex(days) {
 		var add;
@@ -298,6 +300,7 @@
 	}
 
 	function getCurrentTerm() {
+		$('#currentTerm').html('');
 		$('.get-current-term').addClass('show');
 		for (var i = 0; i < currentTerm.length; i++) {
 			$('#currentTerm').append('<option>' + currentTerm[i] + '</option>');
@@ -338,28 +341,23 @@
 	function invalidInputs(input) {
 		inputMiles	= $('#miles');
 		years 		= $('#year');
-		startYear 	= $('#startYear')
 		startMonth	= $('#month');
 		startTerm	= $('#currentTerm');
 		if (isNaN(inputMiles.val()) || inputMiles.val() == '') {
 			inputMiles.focus().addClass('error');
 			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> "' + input + '" is not a valid number</h4></div>');
-		} else if (isNaN(years.find('option:selected').val())) {
+		} else if (years.find('option:selected').val() === 'Select length of lease') {
 			years.focus().addClass('error');
 			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid term length</h4></div>');
-		} else if (startYear.find('option:selected').val() === 'Starting Year') {
-			startYear.focus().addClass('error');
-			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid starting year</h4></div>');
 		} else if (startMonth.find('option:selected').val() === 'Starting Month') {
 			startMonth.focus().addClass('error');
 			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid starting month</h4></div>');
-		} else if (startTerm.find('option:selected').val() === 'Select current term') {
+		} else if (startTerm.find('option:selected').val() === 'Select current term' && runCurrent === true) {
 			startTerm.focus().addClass('error');
 			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid current term</h4></div>');
 		} else {
-			return false;
+			runGenerate = true;
 		}
-		
 	}
 
 	function totalMiles() {
@@ -397,23 +395,20 @@
 		milesPerMonth	= inputMiles / 12;
 		clearOutput();
 		$('.form-control').removeClass('error');
-		if (isNaN(milesPerMonth) || milesPerMonth == 0 || isNaN(years) || startYear === 'Starting Year' || startMonth === 'Starting Month') {
-			invalidInputs(inputMiles);
-		} else {
+		invalidInputs(inputMiles);
+		if (runGenerate) {
 			totalMiles();
 			milesFunction();
 			getCurrentTerm();
-			
 		}
+		
 	});
 	genCurrent.on('click', function() {
 		$('#currentMiles, #message').html('');
 		$('.form-control').removeClass('error');
-		if ($('#currentTerm').val() == 'Select current term') {
-			invalidInputs();
-		} else {
-			 genCurrentTerm();
-		}
+		runCurrent = true;
+		invalidInputs();
+		genCurrentTerm();
 	});
 
 	$('footer').append('<p>Created by Amir5000 &copy ' + year + '</p>')

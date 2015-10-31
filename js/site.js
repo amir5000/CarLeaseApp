@@ -194,6 +194,14 @@
 						days = startDay;
 						endDay = days;
 						milesPerDay += (milesPerMonth / daysStart);
+					} else if (startDay === '30th') {
+						daysStart = daysPerMonth(months[11], 2015 + j);
+						daysEnd = daysPerMonth(months[0], 2015 + j);
+						var addedStartDays = addTo(daysStart);
+						var addedEndDays = addTo(daysEnd);
+						days = daysStart + addedStartDays;
+						endDay = daysEnd + addedEndDays;
+						milesPerDay += (milesPerMonth / daysEnd);
 					} else {
 						daysEnd = daysPerMonth(months[0], 2015 + j);
 						days = startDay;
@@ -215,6 +223,14 @@
 						days = startDay;
 						endDay = days;
 						milesPerDay += (milesPerMonth / daysStart);
+					} else if (startDay === '30th') {
+						daysStart = daysPerMonth(months[i-1], 2015 + j);
+						daysEnd = daysPerMonth(months[i], 2015 + j);
+						var addedStartDays = addTo(daysStart);
+						var addedEndDays = addTo(daysEnd);
+						days = daysStart + addedStartDays;
+						endDay = daysEnd + addedEndDays;
+						milesPerDay += (milesPerMonth / daysEnd);
 					} else {
 						daysEnd = daysPerMonth(months[i], 2015 + j);
 						days = startDay;

@@ -357,7 +357,7 @@
 		var currentDay = currentDate.getDate();
 	    var compareDate = getMonthName(currentMonth);
 
-    	$('.year'+ startTerm).children('.col-sm-9').each(function(index, element) {
+    	$('.year'+ startTerm).children('.col-sm-6').each(function(index, element) {
     		var dayText = $(element).children('.start-day').text();
     		if (currentDay > dayText.slice(0,-2) ) {
     			if ($(element).children('.start-month').html() == compareDate ) {

@@ -179,67 +179,93 @@
 				var endDay;
 				var daysStart;
 				var daysEnd;
-				var milesPerDay = 0;
 				if (i < 1) {
 					if (startDay === '31st') {
-						daysStart = daysPerMonth(months[11], 2015 + j);
-						daysEnd = daysPerMonth(months[0], 2015 + j);
-						var addedStartDays = addTo(daysStart);
-						var addedEndDays = addTo(daysEnd);
-						days = daysStart + addedStartDays;
-						endDay = daysEnd + addedEndDays;
-						milesPerDay += (milesPerMonth / daysEnd);
-					} else if (months[11] === 'Jan') {
-						daysStart = daysPerMonth(months[11], 2015 + j);
-						days = startDay;
-						endDay = days;
-						milesPerDay += (milesPerMonth / daysStart);
+						if (months[11] === 'Feb') {
+							daysStart = daysPerMonth(months[11], 2015 + j);
+							var addedStartDays = addTo(daysStart);
+							days = daysStart + addedStartDays;
+							endDay = days;
+						} else if (months[0] === 'Feb') {
+							daysEnd = daysPerMonth(months[0], 2015 + j);
+							var addedEndDays = addTo(daysEnd);
+							days = startDay;
+							if (months[0+1] !== 'Feb') {
+								daysEnd = daysPerMonth(months[0], 2015 + j);
+								endDay = daysEnd + addedEndDays;
+							}
+						} else {
+							daysStart = daysPerMonth(months[11], 2015 + j);
+							daysEnd = daysPerMonth(months[0], 2015 + j);
+							var addedStartDays = addTo(daysStart);
+							var addedEndDays = addTo(daysEnd);
+							days = daysStart + addedStartDays;
+							endDay = daysEnd + addedEndDays;
+						}
 					} else if (startDay === '30th') {
-						daysStart = daysPerMonth(months[11], 2015 + j);
-						daysEnd = daysPerMonth(months[0], 2015 + j);
-						var addedStartDays = addTo(daysStart);
-						var addedEndDays = addTo(daysEnd);
-						days = daysStart + addedStartDays;
-						endDay = daysEnd + addedEndDays;
-						milesPerDay += (milesPerMonth / daysEnd);
+						if (months[11] === 'Feb') {
+							daysStart = daysPerMonth(months[11], 2015 + j);
+							var addedStartDays = addTo(daysStart);
+							days = daysStart + addedStartDays;
+							endDay = days;
+						} else if (months[0] === 'Feb') {
+							daysEnd = daysPerMonth(months[0], 2015 + j);
+							var addedEndDays = addTo(daysEnd);
+							days = startDay;
+							if (months[0+1] !== 'Feb') {
+								daysEnd = daysPerMonth(months[0], 2015 + j);
+								endDay = daysEnd + addedEndDays;
+							}
+						} else {
+							days = startDay;
+							endDay = days;
+						}
 					} else {
-						daysEnd = daysPerMonth(months[0], 2015 + j);
 						days = startDay;
 						endDay = days;
-						milesPerDay += (milesPerMonth / daysEnd);
 					}
-					$('.year' + j).append('<p class="col-sm-9"><strong>' + numberWithCommas(miles) + '</strong> Miles total to drive from <span class="start-month">' + months[11] + '</span><span class="start-day"> ' + days + '</span> to <span class="end-month">' + months[0] + '</span><span class="end-day"> ' + endDay + '</span></p>');
+					$('.year' + j).append('<p class="col-sm-6"><strong>' + numberWithCommas(miles) + '</strong> Miles total to drive from <span class="start-month">' + months[11] + '</span><span class="start-day"> ' + days + '</span> to <span class="end-month">' + months[0] + '</span><span class="end-day"> ' + endDay + '</span></p>');
 				} else {
 					if (startDay === '31st') {
-						daysStart = daysPerMonth(months[i-1], 2015 + j);
-						daysEnd = daysPerMonth(months[i], 2015 + j);
-						var addedStartDays = addTo(daysStart);
-						var addedEndDays = addTo(daysEnd);
-						days = daysStart + addedStartDays;
-						endDay = daysEnd + addedEndDays;
-						milesPerDay += (milesPerMonth / daysEnd);
-					} else if (months[i-1] === 'Feb') {
-						daysStart = daysPerMonth(months[i-1], 2015 + j);
-						days = startDay;
-						endDay = days;
-						milesPerDay += (milesPerMonth / daysStart);
+						if (months[i-1] === 'Feb') {
+							daysStart = daysPerMonth(months[i-1], 2015 + j);
+							var addedStartDays = addTo(daysStart);
+							days = daysStart + addedStartDays;
+							endDay = startDay;
+						} else if (months[i] === 'Feb') {
+							daysEnd = daysPerMonth(months[i], 2015 + j);
+							var addedEndDays = addTo(daysEnd);
+							days = startDay;
+							endDay = daysEnd + addedEndDays;
+						} else {
+							daysStart = daysPerMonth(months[i-1], 2015 + j);
+							daysEnd = daysPerMonth(months[i], 2015 + j);
+							var addedStartDays = addTo(daysStart);
+							var addedEndDays = addTo(daysEnd);
+							days = daysStart + addedStartDays;
+							endDay = daysEnd + addedEndDays;
+						}
 					} else if (startDay === '30th') {
-						daysStart = daysPerMonth(months[i-1], 2015 + j);
-						daysEnd = daysPerMonth(months[i], 2015 + j);
-						var addedStartDays = addTo(daysStart);
-						var addedEndDays = addTo(daysEnd);
-						days = daysStart + addedStartDays;
-						endDay = daysEnd + addedEndDays;
-						milesPerDay += (milesPerMonth / daysEnd);
+						if (months[i-1] === 'Feb') {
+							daysStart = daysPerMonth(months[i-1], 2015 + j);
+							var addedStartDays = addTo(daysStart);
+							days = daysStart + addedStartDays;
+							endDay = startDay;
+						} else if (months[i] === 'Feb') {
+							daysEnd = daysPerMonth(months[i], 2015 + j);
+							var addedEndDays = addTo(daysEnd);
+							days = startDay;
+							endDay = daysEnd + addedEndDays;
+						} else {
+							days = startDay;
+							endDay = days;
+						}
 					} else {
-						daysEnd = daysPerMonth(months[i], 2015 + j);
 						days = startDay;
 						endDay = days;
-						milesPerDay += (milesPerMonth / daysEnd);
 					}
-					$('.year' + j).append('<p class="col-sm-9"><strong>' + numberWithCommas(miles) + '</strong> Miles total to drive from <span class="start-month">' + months[i-1] + '</span><span class="start-day"> ' + days + '</span> to <span class="end-month">' + months[i] + '</span><span class="end-day"> ' + endDay + '</span></p>');					
-				} 
-				$('.year' + j).append('<p class="col-sm-3">Driving<strong> ' + numberWithCommas(milesPerDay) + '</strong> miles / day</p>');			
+					$('.year' + j).append('<p class="col-sm-6"><strong>' + numberWithCommas(miles) + '</strong> Miles total to drive from <span class="start-month">' + months[i-1] + '</span><span class="start-day"> ' + days + '</span> to <span class="end-month">' + months[i] + '</span><span class="end-day"> ' + endDay + '</span></p>');					
+				}		
 			}
 			$('.year' + j).append('<p class="col-sm-12 text-center total">Total this year: <strong>' + numberWithCommas(miles) + '</strong></p>');
 		}

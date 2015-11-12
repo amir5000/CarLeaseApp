@@ -1,4 +1,5 @@
-# CarLeaseApp
+![Alt text](/img/logo.png?raw=true "CarLeaseApp")
+
 An app to calculate the miles limit of each month for each year when leasing a car.
 
 [Link to App](https://amir5000.github.io/CarLeaseApp)

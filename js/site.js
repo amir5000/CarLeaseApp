@@ -377,25 +377,31 @@
 		$('#miles-months, #currentMiles, #message').html('');
 	}
 
-	function invalidInputs(input) {
+	function invalidInputs(clickedButton, input) {
 		inputMiles	= $('#miles');
 		years 		= $('#year');
 		startMonth	= $('#month');
 		startTerm	= $('#currentTerm');
-		if (isNaN(inputMiles.val()) || inputMiles.val() == '') {
-			inputMiles.focus().addClass('error');
-			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> "' + input + '" is not a valid number</h4></div>');
-		} else if (years.find('option:selected').val() === 'Select length of lease') {
-			years.focus().addClass('error');
-			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid term length</h4></div>');
-		} else if (startMonth.find('option:selected').val() === 'Starting Month') {
-			startMonth.focus().addClass('error');
-			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid starting month</h4></div>');
-		} else if (startTerm.find('option:selected').val() === 'Select current term' && runCurrent === true || startTerm.find('option:selected').index() >  years.find('option:selected').index()) {
-			startTerm.focus().addClass('error');
-			$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid current term</h4></div>');
+		if (clickedButton === "miles") {
+			if (isNaN(inputMiles.val()) || inputMiles.val() == '') {
+				inputMiles.focus().addClass('error');
+				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> "' + input + '" is not a valid number</h4></div>');
+			} else if (years.find('option:selected').val() === 'Select length of lease') {
+				years.focus().addClass('error');
+				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid term length</h4></div>');
+			} else if (startMonth.find('option:selected').val() === 'Starting Month') {
+				startMonth.focus().addClass('error');
+				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid starting month</h4></div>');
+			} else {
+				runGenerate = true;
+			}
 		} else {
-			runGenerate = true;
+			if (startTerm.find('option:selected').val() === 'Select current term' && runCurrent === true || startTerm.find('option:selected').index() >  years.find('option:selected').index()) {
+				startTerm.focus().addClass('error');
+				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid current term</h4></div>');
+			} else {
+				runGenerate = true;
+			}
 		}
 	}
 
@@ -426,6 +432,7 @@
 	daysDropDown();
 	
 	button.on('click', function() {
+		var clickedButton = "miles";
 		inputMiles 		= $('#miles').val();
 		years 			= $('#year option:selected').index();
 		startYear 		= $('#startYear').val();
@@ -433,8 +440,9 @@
 		startDay 		= $('#day').val();	
 		milesPerMonth	= inputMiles / 12;
 		clearOutput();
+
 		$('.form-control').removeClass('error');
-		invalidInputs(inputMiles);
+		invalidInputs(clickedButton, inputMiles);
 		if (runGenerate) {
 			totalMiles();
 			milesFunction();
@@ -443,10 +451,11 @@
 		
 	});
 	genCurrent.on('click', function() {
+		var clickedButton = "current";
 		$('#currentMiles, #message').html('');
 		$('.form-control').removeClass('error');
 		runCurrent = true;
-		invalidInputs();
+		invalidInputs(clickedButton);
 		genCurrentTerm();
 	});
 

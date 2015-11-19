@@ -459,5 +459,5 @@
 		genCurrentTerm();
 	});
 
-	$('footer').append('<p class="text-center">Created by Amir5000 &copy; ' + year + ' - All rights reserved.</p>')
+	$('footer').append('<p class="text-center">Created by Amir5000 &copy; ' + year + ' - All rights reserved.</p>');
 })();

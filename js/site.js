@@ -342,7 +342,7 @@
 	}
 
 	function getCurrentTerm() {
-		$('#currentTerm').html('');
+		$('#currentTerm').empty();
 		$('.get-current-term').addClass('show');
 		for (var i = 0; i < currentTerm.length; i++) {
 			$('#currentTerm').append('<option>' + currentTerm[i] + '</option>');
@@ -351,7 +351,7 @@
 
 	function genCurrentTerm() {
 		startTerm = $('#currentTerm option:selected').index() - 1;
-		$('#currentMiles').html('');
+		$('#currentMiles').empty();
 		var currentDate = new Date();
 		var currentMonth = currentDate.getMonth() + 1;
 		var currentDay = currentDate.getDate();
@@ -374,7 +374,7 @@
 	}
 
 	function clearOutput() {
-		$('#miles-months, #currentMiles, #message').html('');
+		$('#miles-months, #currentMiles, #message').empty();
 	}
 
 	function invalidInputs(clickedButton, input) {
@@ -452,7 +452,7 @@
 	});
 	genCurrent.on('click', function() {
 		var clickedButton = "current";
-		$('#currentMiles, #message').html('');
+		$('#currentMiles, #message').empty();
 		$('.form-control').removeClass('error');
 		runCurrent = true;
 		invalidInputs(clickedButton);

@@ -114,6 +114,162 @@
 		return monthName;
 	}
 
+	function daysPerMonth(month,year) {
+		switch (month) {
+			case 'Jan':
+			default:
+				numberOfMonth = 1;
+				break;
+			case 'Feb':
+				numberOfMonth = 2;
+				break;
+			case 'Mar':
+				numberOfMonth = 3;
+				break;
+			case 'Apr':
+				numberOfMonth = 4;
+				break;
+			case 'May':
+				numberOfMonth = 5;
+				break;
+			case 'Jun':
+				numberOfMonth = 6;
+				break;
+			case 'Jul':
+				numberOfMonth = 7;
+				break;
+			case 'Aug':
+				numberOfMonth = 8;
+				break;
+			case 'Sep':
+				numberOfMonth = 9;
+				break;
+			case 'Oct':
+				numberOfMonth = 10;
+				break;
+			case 'Nov':
+				numberOfMonth = 11;
+				break;
+			case 'Dec':
+				numberOfMonth = 12;
+				break;	
+		}
+		return new Date(year, numberOfMonth, 0).getDate();
+	}
+
+	function yearsDropdown() {
+		for (var i = 0; i < monthTerm.length; i++) {
+			$('#year').append('<option>' + monthTerm[i] + '</option>');
+		}
+	}
+
+	function monthsDropDown() {
+		for (var i = 0; i < monthsStart.length; i++) {
+			$('#month').append('<option>' + monthsStart[i] + '</option>');
+		}
+	}
+
+	function daysDropDown() {		
+		for (var i = 0; i < daysStart.length; i++) {
+			$('#day').append('<option>' + daysStart[i] + '</option>');
+		}
+		$('#month').on('change', function () {
+			var monthValue	= $('#month').val();
+			var days	= daysPerMonth(monthValue, 2015);
+			$('#day').html("");
+			for (var i = 0; i < days; i++) {
+				var add = addToIndex(i);
+				$('#day').append('<option>' + (i + 1) + add + '</option>');
+			}
+		});
+	}
+
+	function getCurrentTerm() {
+		$('#currentTerm').empty();
+		$('.get-current-term').addClass('show');
+		for (var i = 0; i < currentTerm.length; i++) {
+			$('#currentTerm').append('<option>' + currentTerm[i] + '</option>');
+		}
+	}
+
+	function genCurrentTerm() {
+		startTerm = $('#currentTerm option:selected').index() - 1;
+		$('#currentMiles').empty();
+		var currentDate = new Date();
+		var currentMonth = currentDate.getMonth() + 1;
+		var currentDay = currentDate.getDate();
+	    var compareDate = getMonthName(currentMonth);
+
+    	$('.year'+ startTerm).children('.col-sm-6').each(function(index, element) {
+    		var dayText = $(element).children('.start-day').text();
+    		if (currentDay > dayText.slice(0,-2) ) {
+    			if ($(element).children('.start-month').html() == compareDate ) {
+		    		var currentMiles = $(element).find('strong').html();
+		    		$('#currentMiles').append('<strong>You are allowed ' + currentMiles + '</strong> miles to dive for the month of ' + compareDate + '.');
+		    	}
+    		} else {
+    			if ($(element).children('.end-month').html() == compareDate ) {
+		    		var currentMiles = $(element).find('strong').html();
+		    		$('#currentMiles').append('<strong>You are allowed ' + currentMiles + '</strong> miles to dive for the month of ' + compareDate + '.');
+		    	}
+    		}
+    	});
+	}
+
+	function clearOutput() {
+		$('#miles-months, #currentMiles, #message').empty();
+	}
+
+	function invalidInputs(clickedButton, input) {
+		inputMiles	= $('#miles');
+		years 		= $('#year');
+		startMonth	= $('#month');
+		startTerm	= $('#currentTerm');
+		if (clickedButton === "miles") {
+			if (isNaN(inputMiles.val()) || inputMiles.val() == '') {
+				inputMiles.focus().addClass('error');
+				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> "' + input + '" is not a valid number</h4></div>');
+			} else if (years.find('option:selected').val() === 'Select length of lease') {
+				years.focus().addClass('error');
+				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid term length</h4></div>');
+			} else if (startMonth.find('option:selected').val() === 'Starting Month') {
+				startMonth.focus().addClass('error');
+				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid starting month</h4></div>');
+			} else {
+				runGenerate = true;
+			}
+		} else {
+			if (startTerm.find('option:selected').val() === 'Select current term' && runCurrent === true || startTerm.find('option:selected').index() >  years.find('option:selected').index()) {
+				startTerm.focus().addClass('error');
+				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid current term</h4></div>');
+			} else {
+				runGenerate = true;
+			}
+		}
+	}
+
+	function totalMiles() {
+		inputMiles	= $('#miles').val();
+		years		= $('#year option:selected').index();
+		var totalMiles	= inputMiles * years;
+		if (!isNaN(totalMiles)) {
+			$('#total').html('<p>Total Miles allowed after ' + years + ' years is: <strong>' + numberWithCommas(totalMiles) + ' Miles.</strong></p>');
+		}
+	}
+
+	function numberWithCommas(x) {
+	    var parts = x.toString().split(".");
+	    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    if (parts[1]) {
+	    	var substr = parts[1].substr(0,1);
+	    	parts[1] = parts[1].replace(parts[1], substr);
+	    	return parts.join(".");
+	    } else {
+	    	parts = parts + '.0';
+	    	return parts;
+	    }
+	}
+
 	function milesFunction() {
 		inputMiles 			= $('#miles').val();
 		years 				= $('#year option:selected').index();	
@@ -269,162 +425,6 @@
 			}
 			$('.year' + j).append('<p class="col-sm-12 text-center total">Total this year: <strong>' + numberWithCommas(miles) + '</strong></p>');
 		}
-	}
-
-	function daysPerMonth(month,year) {
-		switch (month) {
-			case 'Jan':
-			default:
-				numberOfMonth = 1;
-				break;
-			case 'Feb':
-				numberOfMonth = 2;
-				break;
-			case 'Mar':
-				numberOfMonth = 3;
-				break;
-			case 'Apr':
-				numberOfMonth = 4;
-				break;
-			case 'May':
-				numberOfMonth = 5;
-				break;
-			case 'Jun':
-				numberOfMonth = 6;
-				break;
-			case 'Jul':
-				numberOfMonth = 7;
-				break;
-			case 'Aug':
-				numberOfMonth = 8;
-				break;
-			case 'Sep':
-				numberOfMonth = 9;
-				break;
-			case 'Oct':
-				numberOfMonth = 10;
-				break;
-			case 'Nov':
-				numberOfMonth = 11;
-				break;
-			case 'Dec':
-				numberOfMonth = 12;
-				break;	
-		}
-		return new Date(year, numberOfMonth, 0).getDate();
-	}
-
-	function yearsDropdown() {
-		for (var i = 0; i < monthTerm.length; i++) {
-			$('#year').append('<option>' + monthTerm[i] + '</option>');
-		}
-	}
-
-	function monthsDropDown() {
-		for (var i = 0; i < monthsStart.length; i++) {
-			$('#month').append('<option>' + monthsStart[i] + '</option>');
-		}
-	}
-
-	function daysDropDown() {		
-		for (var i = 0; i < daysStart.length; i++) {
-			$('#day').append('<option>' + daysStart[i] + '</option>');
-		}
-		$('#month').on('change', function () {
-			var monthValue	= $('#month').val();
-			var days	= daysPerMonth(monthValue, 2015);
-			$('#day').html("");
-			for (var i = 0; i < days; i++) {
-				var add = addToIndex(i);
-				$('#day').append('<option>' + (i + 1) + add + '</option>');
-			}
-		});
-	}
-
-	function getCurrentTerm() {
-		$('#currentTerm').empty();
-		$('.get-current-term').addClass('show');
-		for (var i = 0; i < currentTerm.length; i++) {
-			$('#currentTerm').append('<option>' + currentTerm[i] + '</option>');
-		}
-	}
-
-	function genCurrentTerm() {
-		startTerm = $('#currentTerm option:selected').index() - 1;
-		$('#currentMiles').empty();
-		var currentDate = new Date();
-		var currentMonth = currentDate.getMonth() + 1;
-		var currentDay = currentDate.getDate();
-	    var compareDate = getMonthName(currentMonth);
-
-    	$('.year'+ startTerm).children('.col-sm-6').each(function(index, element) {
-    		var dayText = $(element).children('.start-day').text();
-    		if (currentDay > dayText.slice(0,-2) ) {
-    			if ($(element).children('.start-month').html() == compareDate ) {
-		    		var currentMiles = $(element).find('strong').html();
-		    		$('#currentMiles').append('<strong>You are allowed ' + currentMiles + '</strong> miles to dive for the month of ' + compareDate + '.');
-		    	}
-    		} else {
-    			if ($(element).children('.end-month').html() == compareDate ) {
-		    		var currentMiles = $(element).find('strong').html();
-		    		$('#currentMiles').append('<strong>You are allowed ' + currentMiles + '</strong> miles to dive for the month of ' + compareDate + '.');
-		    	}
-    		}
-    	});
-	}
-
-	function clearOutput() {
-		$('#miles-months, #currentMiles, #message').empty();
-	}
-
-	function invalidInputs(clickedButton, input) {
-		inputMiles	= $('#miles');
-		years 		= $('#year');
-		startMonth	= $('#month');
-		startTerm	= $('#currentTerm');
-		if (clickedButton === "miles") {
-			if (isNaN(inputMiles.val()) || inputMiles.val() == '') {
-				inputMiles.focus().addClass('error');
-				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> "' + input + '" is not a valid number</h4></div>');
-			} else if (years.find('option:selected').val() === 'Select length of lease') {
-				years.focus().addClass('error');
-				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid term length</h4></div>');
-			} else if (startMonth.find('option:selected').val() === 'Starting Month') {
-				startMonth.focus().addClass('error');
-				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid starting month</h4></div>');
-			} else {
-				runGenerate = true;
-			}
-		} else {
-			if (startTerm.find('option:selected').val() === 'Select current term' && runCurrent === true || startTerm.find('option:selected').index() >  years.find('option:selected').index()) {
-				startTerm.focus().addClass('error');
-				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid current term</h4></div>');
-			} else {
-				runGenerate = true;
-			}
-		}
-	}
-
-	function totalMiles() {
-		inputMiles	= $('#miles').val();
-		years		= $('#year option:selected').index();
-		var totalMiles	= inputMiles * years;
-		if (!isNaN(totalMiles)) {
-			$('#total').html('<p>Total Miles allowed after ' + years + ' years is: <strong>' + numberWithCommas(totalMiles) + ' Miles.</strong></p>');
-		}
-	}
-
-	function numberWithCommas(x) {
-	    var parts = x.toString().split(".");
-	    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	    if (parts[1]) {
-	    	var substr = parts[1].substr(0,1);
-	    	parts[1] = parts[1].replace(parts[1], substr);
-	    	return parts.join(".");
-	    } else {
-	    	parts = parts + '.0';
-	    	return parts;
-	    }
 	}
 
 	yearsDropdown();

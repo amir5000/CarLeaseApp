@@ -25,6 +25,19 @@
 	var runGenerate		= false;
 	var runCurrent 		= false;
 
+	function numberWithCommas(x) {
+	    var parts = x.toString().split(".");
+	    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    if (parts[1]) {
+	    	var substr = parts[1].substr(0,1);
+	    	parts[1] = parts[1].replace(parts[1], substr);
+	    	return parts.join(".");
+	    } else {
+	    	parts = parts + '.0';
+	    	return parts;
+	    }
+	}
+	
 	function addToIndex(days) {
 		var add;
 		switch (days) {
@@ -255,19 +268,6 @@
 		if (!isNaN(totalMiles)) {
 			$('#total').html('<p>Total Miles allowed after ' + years + ' years is: <strong>' + numberWithCommas(totalMiles) + ' Miles.</strong></p>');
 		}
-	}
-
-	function numberWithCommas(x) {
-	    var parts = x.toString().split(".");
-	    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	    if (parts[1]) {
-	    	var substr = parts[1].substr(0,1);
-	    	parts[1] = parts[1].replace(parts[1], substr);
-	    	return parts.join(".");
-	    } else {
-	    	parts = parts + '.0';
-	    	return parts;
-	    }
 	}
 
 	function milesFunction() {

@@ -24,6 +24,7 @@
 	var startYear		= ['Starting Year'];
 	var runGenerate		= false;
 	var runCurrent 		= false;
+	var clickedButton	= '';
 
 	function numberWithCommas(x) {
 	    var parts = x.toString().split(".");
@@ -430,9 +431,8 @@
 	yearsDropdown();
 	monthsDropDown();
 	daysDropDown();
-	
 	button.on('click', function() {
-		var clickedButton = "miles";
+		clickedButton = "miles";
 		inputMiles 		= $('#miles').val();
 		years 			= $('#year option:selected').index();
 		startYear 		= $('#startYear').val();
@@ -448,10 +448,9 @@
 			milesFunction();
 			getCurrentTerm();
 		}
-		
 	});
 	genCurrent.on('click', function() {
-		var clickedButton = "current";
+		clickedButton = "current";
 		$('#currentMiles, #message').empty();
 		$('.form-control').removeClass('error');
 		runCurrent = true;

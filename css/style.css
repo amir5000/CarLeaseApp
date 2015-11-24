@@ -93,54 +93,54 @@ select.form-control {
 	cursor: pointer;
 }
 
-@keyframes carScale { /* CSS3 */
+@keyframes carScale {
 	0%   { 
-		transform:         scale(.3); /* CSS3 */
-		-o-transform:      scale(.3); /* Opera */
-		-ms-transform:     scale(.3); /* IE 9 */
+		transform:         scale(.3);
+		-o-transform:      scale(.3);
+		-ms-transform:     scale(.3);
 	}
 	40%   { 
-		transform:         scale(1.3); /* CSS3 */
-		-o-transform:      scale(1.3); /* Opera */
-		-ms-transform:     scale(1.3); /* IE 9 */
+		transform:         scale(1.3);
+		-o-transform:      scale(1.3);
+		-ms-transform:     scale(1.3);
 	}
 	50%   { 
-		transform:         scale(1); /* CSS3 */
-		-o-transform:      scale(1); /* Opera */
-		-ms-transform:     scale(1); /* IE 9 */
+		transform:         scale(1);
+		-o-transform:      scale(1);
+		-ms-transform:     scale(1);
 	}
 	100%   { 
-		transform:         scale(1); /* CSS3 */
-		-o-transform:      scale(1); /* Opera */
-		-ms-transform:     scale(1); /* IE 9 */
+		transform:         scale(1);
+		-o-transform:      scale(1);
+		-ms-transform:     scale(1);
 	}
 }
-@-moz-keyframes ex4 { /* Firefox */
+@-moz-keyframes carScale {
 	0%   {
-		-moz-transform:    scale(.3); /* Firefox */
+		-moz-transform:    scale(.3);
 	}
 	40% {
-		-moz-transform:    scale(1.3); /* Firefox */
+		-moz-transform:    scale(1.3);
 	}
 	50% {
-		-moz-transform:    scale(1); /* Firefox */
+		-moz-transform:    scale(1);
 	}
 	100% {
-		-moz-transform:    scale(1); /* Firefox */
+		-moz-transform:    scale(1);
 	}
 }
-@-webkit-keyframes ex4 { /* Webkit */
+@-webkit-keyframes carScale {
 	0%   {
-		-webkit-transform: scale(.3); /* Webkit */
+		-webkit-transform: scale(.3);
 	}
 	40% {
-		-webkit-transform: scale(1.3); /* Webkit */
+		-webkit-transform: scale(1.3);
 	}
 	50% {
-		-webkit-transform: scale(1); /* Webkit */
+		-webkit-transform: scale(1);
 	}
 	100% {
-		-webkit-transform: scale(1); /* Webkit */
+		-webkit-transform: scale(1);
 	}
 }
 

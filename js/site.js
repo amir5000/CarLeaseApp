@@ -26,13 +26,13 @@
 	var runCurrent 		= false;
 	var clickedButton	= '';
 
-	function numberWithCommas(x) {
-	    var parts = x.toString().split('.');
+	function numberWithCommas(numberX) {
+	    var parts = numberX.toString().split('.');
 	    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	    if (parts[1]) {
 	    	var substr = parts[1].substr(0,1);
 	    	parts[1] = parts[1].replace(parts[1], substr);
-	    	return parts.join(".");
+	    	return parts.join('.');
 	    } else {
 	    	parts = parts + '.0';
 	    	return parts;
@@ -190,7 +190,7 @@
 		$('#month').on('change', function () {
 			var monthValue	= $('#month').val();
 			var days	= daysPerMonth(monthValue, 2015);
-			$('#day').html("");
+			$('#day').empty();
 			for (var i = 0; i < days; i++) {
 				var add = addToIndex(i);
 				$('#day').append('<option>' + (i + 1) + add + '</option>');

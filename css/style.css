@@ -72,9 +72,6 @@ input.form-control, select.form-control {
     margin-bottom: 30px;
 }
 
-.get-current-term {
-}
-
 .get-current-term select.form-control {
 	width: 45%;
 	float: left;
@@ -145,9 +142,9 @@ select.form-control {
 }
 
 .car-scale {
-	animation:         carScale 7.5s ease 1s infinite; /* CSS3 */
-	-moz-animation:    carScale 7.5s ease 1s infinite; /* Firefox */
-	-webkit-animation: carScale 7.5s ease 1s infinite; /* Webkit */
+	animation:         carScale 7.5s ease 1s infinite;
+	-moz-animation:    carScale 7.5s ease 1s infinite; 
+	-webkit-animation: carScale 7.5s ease 1s infinite;
 }
 
 @media (max-width: 768px) {

@@ -27,7 +27,7 @@
 	var clickedButton	= '';
 
 	function numberWithCommas(x) {
-	    var parts = x.toString().split(".");
+	    var parts = x.toString().split('.');
 	    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	    if (parts[1]) {
 	    	var substr = parts[1].substr(0,1);
@@ -321,7 +321,6 @@
 				milesPerMonth = 0;
 				break;
 		}
-		
 
 		for (var j = 0; j < years; j++) {
 			$('#miles-months').append('<div class="year' + j + ' clearfix"></div>');
@@ -432,7 +431,7 @@
 	monthsDropDown();
 	daysDropDown();
 	button.on('click', function() {
-		clickedButton = "miles";
+		clickedButton 	= 'miles';
 		inputMiles 		= $('#miles').val();
 		years 			= $('#year option:selected').index();
 		startYear 		= $('#startYear').val();
@@ -450,7 +449,7 @@
 		}
 	});
 	genCurrent.on('click', function() {
-		clickedButton = "current";
+		clickedButton = 'current';
 		$('#currentMiles, #message').empty();
 		$('.form-control').removeClass('error');
 		runCurrent = true;

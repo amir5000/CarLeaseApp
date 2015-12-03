@@ -1,30 +1,30 @@
 (function() {
 	var miles, milesPerMonth, numberOfMonth, inputMiles, years, startMonth, startDay, startTerm;
-	var janmonths		= ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'];
-	var febmonths		= ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'];
-	var marmonths		= ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
-	var aprmonths		= ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'];
-	var maymonths		= ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'];
-	var junmonths		= ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-	var julmonths		= ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
-	var augmonths		= ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
-	var sepmonths		= ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'];
-	var octmonths		= ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
-	var novmonths		= ['Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
-	var decmonths		= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-	var monthsStart		= ['Starting Month', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-	var daysStart		= ['Select a month first'];
-	var monthTerm		= ['Select length of lease', '12 Months', '24 Months', '36 Months', '48 Months', '60 Months', '72 Months', '84 Months', '96 Months', '108 Months', '120 Months'];
-	var currentTerm		= ['Select current term', 'Term 1', 'Term 2', 'Term 3', 'Term 4', 'Term 5', 'Term 6', 'Term 7', 'Term 8', 'Term 9', 'Term 10'];
-	var months			= [];
-	var d 				= new Date();
-	var year 			= d.getFullYear();
-	var button 			= $('#genMiles');
-	var genCurrent		= $('#genCurrent');
-	var startYear		= ['Starting Year'];
-	var runGenerate		= false;
-	var runCurrent 		= false;
-	var clickedButton	= '';
+	var janmonths	  = ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'];
+	var febmonths	  = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'];
+	var marmonths	  = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
+	var aprmonths	  = ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'];
+	var maymonths	  = ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'];
+	var junmonths	  = ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+	var julmonths	  = ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+	var augmonths	  = ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
+	var sepmonths	  = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'];
+	var octmonths	  = ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
+	var novmonths	  = ['Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
+	var decmonths	  = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	var monthsStart	  = ['Starting Month', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	var daysStart	  = ['Select a month first'];
+	var monthTerm	  = ['Select length of lease', '12 Months', '24 Months', '36 Months', '48 Months', '60 Months', '72 Months', '84 Months', '96 Months', '108 Months', '120 Months'];
+	var currentTerm	  = ['Select current term', 'Term 1', 'Term 2', 'Term 3', 'Term 4', 'Term 5', 'Term 6', 'Term 7', 'Term 8', 'Term 9', 'Term 10'];
+	var months		  = [];
+	var d 			  = new Date();
+	var year 		  = d.getFullYear();
+	var button 		  = $('#genMiles');
+	var genCurrent	  = $('#genCurrent');
+	var startYear	  = ['Starting Year'];
+	var runGenerate	  = false;
+	var runCurrent 	  = false;
+	var clickedButton = '';
 
 	function numberWithCommas(numberX) {
 	    var parts = numberX.toString().split('.');
@@ -188,8 +188,8 @@
 			$('#day').append('<option>' + daysStart[i] + '</option>');
 		}
 		$('#month').on('change', function () {
-			var monthValue	= $('#month').val();
-			var days	= daysPerMonth(monthValue, 2015);
+			var monthValue = $('#month').val();
+			var days = daysPerMonth(monthValue, 2015);
 			$('#day').empty();
 			for (var i = 0; i < days; i++) {
 				var add = addToIndex(i);
@@ -209,10 +209,10 @@
 	function genCurrentTerm() {
 		startTerm = $('#currentTerm option:selected').index() - 1;
 		$('#currentMiles').empty();
-		var currentDate = new Date();
+		var currentDate  = new Date();
 		var currentMonth = currentDate.getMonth() + 1;
-		var currentDay = currentDate.getDate();
-	    var compareDate = getMonthName(currentMonth);
+		var currentDay   = currentDate.getDate();
+	    var compareDate  = getMonthName(currentMonth);
 
     	$('.year'+ startTerm).children('.col-sm-6').each(function(index, element) {
     		var dayText = $(element).children('.start-day').text();
@@ -235,11 +235,11 @@
 	}
 
 	function invalidInputs(clickedButton, input) {
-		inputMiles	= $('#miles');
-		years 		= $('#year');
-		startMonth	= $('#month');
-		startTerm	= $('#currentTerm');
-		if (clickedButton === "miles") {
+		inputMiles = $('#miles');
+		years 	   = $('#year');
+		startMonth = $('#month');
+		startTerm  = $('#currentTerm');
+		if (clickedButton === 'miles') {
 			if (isNaN(inputMiles.val()) || inputMiles.val() == '') {
 				inputMiles.focus().addClass('error');
 				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> "' + input + '" is not a valid number</h4></div>');
@@ -263,23 +263,23 @@
 	}
 
 	function totalMiles() {
-		inputMiles	= $('#miles').val();
-		years		= $('#year option:selected').index();
-		var totalMiles	= inputMiles * years;
+		inputMiles	   = $('#miles').val();
+		years		   = $('#year option:selected').index();
+		var totalMiles = inputMiles * years;
 		if (!isNaN(totalMiles)) {
 			$('#total').html('<p>Total Miles allowed after ' + years + ' years is: <strong>' + numberWithCommas(totalMiles) + ' Miles.</strong></p>');
 		}
 	}
 
 	function milesFunction() {
-		inputMiles 			= $('#miles').val();
-		years 				= $('#year option:selected').index();	
-		startMonth 			= $('#month').val();
-		startDay 			= $('#day').val();	
-		miles				= 0; // to reset the miles and not keep incrementing them as you click the generate miles button
-		numberOfMonth		= 0; // to reset the miles and not keep incrementing them as you click the generate miles button
-		milesPerMonth		= 0; // to reset the miles and not keep incrementing them as you click the generate miles button
-		milesPerMonth 		= inputMiles / 12;
+		inputMiles 	  = $('#miles').val();
+		years 		  = $('#year option:selected').index();	
+		startMonth 	  = $('#month').val();
+		startDay 	  = $('#day').val();	
+		miles		  = 0; // to reset the miles and not keep incrementing them as you click the generate miles button
+		numberOfMonth = 0; // to reset the miles and not keep incrementing them as you click the generate miles button
+		milesPerMonth = 0; // to reset the miles and not keep incrementing them as you click the generate miles button
+		milesPerMonth = inputMiles / 12;
 		switch (startMonth) {
 			case janmonths[11]:
 				months = janmonths;
@@ -431,13 +431,13 @@
 	monthsDropDown();
 	daysDropDown();
 	button.on('click', function() {
-		clickedButton 	= 'miles';
-		inputMiles 		= $('#miles').val();
-		years 			= $('#year option:selected').index();
-		startYear 		= $('#startYear').val();
-		startMonth 		= $('#month').val();
-		startDay 		= $('#day').val();	
-		milesPerMonth	= inputMiles / 12;
+		clickedButton = 'miles';
+		inputMiles 	  = $('#miles').val();
+		years 		  = $('#year option:selected').index();
+		startYear 	  = $('#startYear').val();
+		startMonth 	  = $('#month').val();
+		startDay 	  = $('#day').val();	
+		milesPerMonth = inputMiles / 12;
 		clearOutput();
 
 		$('.form-control').removeClass('error');

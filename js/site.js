@@ -256,7 +256,7 @@
 				runGenerate = true;
 			}
 		} else {
-			if (startTerm.find('option:selected').val() === 'Select current term' && runCurrent === true ) {
+			if (startTerm.find('option:selected').val() === 'Select current term' && runCurrent === true) {
 				startTerm.focus().addClass('error');
 				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid current term</h4></div>');
 			} else {

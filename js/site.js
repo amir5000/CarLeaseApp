@@ -200,14 +200,17 @@
 
 	function getCurrentTerm() {
 		$('#currentTerm').empty();
+		var startTerm = $('#year option:selected').index() + 1;
+		console.log(startTerm);
+		console.log($('#year option:selected'));
 		$('.get-current-term').addClass('show');
-		for (var i = 0; i < currentTerm.length; i++) {
+		for (var i = 0; i < startTerm; i++) {
 			$('#currentTerm').append('<option>' + currentTerm[i] + '</option>');
 		}
 	}
 
 	function genCurrentTerm() {
-		startTerm = $('#currentTerm option:selected').index() - 1;
+		var startTerm = $('#currentTerm option:selected').index() - 1;
 		$('#currentMiles').empty();
 		var currentDate  = new Date();
 		var currentMonth = currentDate.getMonth() + 1;
@@ -238,7 +241,7 @@
 		inputMiles = $('#miles');
 		years 	   = $('#year');
 		startMonth = $('#month');
-		startTerm  = $('#currentTerm');
+		var startTerm  = $('#currentTerm');
 		if (clickedButton === 'miles') {
 			if (isNaN(inputMiles.val()) || inputMiles.val() == '') {
 				inputMiles.focus().addClass('error');
@@ -253,7 +256,7 @@
 				runGenerate = true;
 			}
 		} else {
-			if (startTerm.find('option:selected').val() === 'Select current term' && runCurrent === true || startTerm.find('option:selected').index() >  years.find('option:selected').index()) {
+			if (startTerm.find('option:selected').val() === 'Select current term' && runCurrent === true) {
 				startTerm.focus().addClass('error');
 				$('#message').html( '<div class="alert alert-danger"><h4 class="text-center"><i class="fa fa-exclamation-circle"></i> Select a valid current term</h4></div>');
 			} else {

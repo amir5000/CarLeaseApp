@@ -201,8 +201,6 @@
 	function getCurrentTerm() {
 		$('#currentTerm').empty();
 		var startTerm = $('#year option:selected').index() + 1;
-		console.log(startTerm);
-		console.log($('#year option:selected'));
 		$('.get-current-term').addClass('show');
 		for (var i = 0; i < startTerm; i++) {
 			$('#currentTerm').append('<option>' + currentTerm[i] + '</option>');

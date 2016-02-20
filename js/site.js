@@ -277,9 +277,9 @@
 		years 		  = $('#year option:selected').index();	
 		startMonth 	  = $('#month').val();
 		startDay 	  = $('#day').val();	
-		miles		  = 0; // to reset the miles and not keep incrementing them as you click the generate miles button
-		numberOfMonth = 0; // to reset the miles and not keep incrementing them as you click the generate miles button
-		milesPerMonth = 0; // to reset the miles and not keep incrementing them as you click the generate miles button
+		miles		  = 0;
+		numberOfMonth = 0;
+		milesPerMonth = 0; 
 		milesPerMonth = inputMiles / 12;
 		switch (startMonth) {
 			case janmonths[11]:

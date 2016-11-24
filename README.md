@@ -2,7 +2,7 @@
 
 A Simple Javascript Webapp to calculate the miles limit of each month for each year when leasing a car.
 
-[Link to App](https://amir5000.github.io/CarLeaseApp)
+[Link to App](http://amir5000.github.io/CarLeaseApp)
 
 ## Short discription:
 Start by entering the miles per year that you are allowed on your lease, then select the term length of the lease with the starting day and month. The results will show how many miles you would acumulate over the years of the lease and what amount of miles per month you would get to drive. 

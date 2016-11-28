@@ -16,10 +16,10 @@
 	var daysStart	  = ['Select a month first'];
 	var monthTerm	  = ['Select length of lease', '12 Months', '24 Months', '36 Months', '48 Months', '60 Months', '72 Months', '84 Months', '96 Months', '108 Months', '120 Months'];
 	var currentTerm	  = ['Select current term', 'Term 1', 'Term 2', 'Term 3', 'Term 4', 'Term 5', 'Term 6', 'Term 7', 'Term 8', 'Term 9', 'Term 10'];
-	var months		  = [];
-	var d 			  = new Date();
-	var year 		  = d.getFullYear();
-	var button 		  = $('#genMiles');
+	var months	  = [];
+	var d 		  = new Date();
+	var year	  = d.getFullYear();
+	var button	  = $('#genMiles');
 	var genCurrent	  = $('#genCurrent');
 	var startYear	  = ['Starting Year'];
 	var runGenerate	  = false;
